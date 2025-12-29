@@ -191,10 +191,23 @@ body {
     display: block;
 }
 
+.card-no-link {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.card-no-link:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: var(--bg-card);
+    border-color: var(--border);
+}
+
 .card-image {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    object-position: top;
     border-radius: 0.375rem;
     margin-bottom: 1rem;
 }
@@ -272,16 +285,52 @@ body {
     border-bottom-style: solid;
 }
 
-.entity-link.entity-character::before {
-    content: "👤 ";
+/* Entity Preview Tooltip */
+.entity-tooltip {
+    position: fixed;
+    max-width: 280px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 4px 16px var(--shadow);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
 }
 
-.entity-link.entity-location::before {
-    content: "📍 ";
+.entity-tooltip.visible {
+    opacity: 1;
 }
 
-.entity-link.entity-faction::before {
-    content: "⚔️ ";
+.entity-tooltip-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.entity-tooltip-type {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
 }
 
 /* Session Content */
@@ -513,28 +562,28 @@ body {
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <div class="site-container">
         <nav class="sidebar">
-            <a href="index.html" class="site-title">CampaignOne</a>
+            <a href="../../index.html" class="site-title">CampaignOne</a>
             
         <div class="nav-section">
             <div class="nav-section-title">Entities</div>
             <ul class="nav-list">
-                <li><a href="entities/characters/index.html">Characters</a></li>
-                <li><a href="entities/locations/index.html" class="active">Locations</a></li>
-                <li><a href="entities/factions/index.html">Factions</a></li>
+                <li><a href="../../entities/characters/index.html">Characters</a></li>
+                <li><a href="../../entities/locations/index.html" class="active">Locations</a></li>
+                <li><a href="../../entities/factions/index.html">Factions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Sessions</div>
             <ul class="nav-list">
-                <li><a href="sessions/index.html">All Sessions</a></li>
+                <li><a href="../../sessions/index.html">All Sessions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Inventory</div>
             <ul class="nav-list">
-                <li><a href="inventory/index.html">Campaign Inventory</a></li>
+                <li><a href="../../inventory/index.html">Campaign Inventory</a></li>
             </ul>
         </div>
         
@@ -550,17 +599,135 @@ body {
             <div class="entity-content">
                 
         <section class="entity-section">
+            <h2 class="entity-section-title">Description</h2>
+            <p>The Astral Forge is a looming arcane facility whose heart is a thunderous engine chamber, its brasswork conduits and suspended rings shedding a cold, star-lit glow. The air hums with restrained power and the metallic tang of ozone; heat breathes from the engine ribs in steady waves while ward-lanterns cast hard-edged shadows across riveted walkways. Below, a flickering stairway drops into a recessed vault level where stone gives way to polished plates etched with star, forge, and hammer motifs. A glowing brass door, warm to the touch and veined with runic seams, guards the first threshold, while deeper still an inner vault door bears a carved, impassive face that answers to secrets rather than keys.</p>
+        </section>
+        
+
+        <section class="entity-section">
+            <h2 class="entity-section-title">Significance</h2>
+            <p>During the Convergence, the Astral Forge becomes a critical stabilizer for planar forces in the region. Its engine falters without a focusing crystal locked within the lower vaults, and the site’s layered defenses—guardians, wards, and passwords—exist to ensure that the crystal can be recovered only by the prepared. Once the crystal is retrieved and seated, the Forge’s engine steadies, preserving the facility and the surrounding arcane lattice from further destabilization.</p>
+        </section>
+        
+
+        <section class="entity-section">
+            <h2 class="entity-section-title">Events</h2>
+            <p>As the Convergence strains its mechanisms, the party descends the Forge’s flickering stair to the lower vault. A keyed touch coaxes the glowing brass door open, admitting them into a corridor lined with dormant and dangerous curios. There, a legged metal sphere rouses to intercept them; when defeated, it detonates in a concussive burst, underscoring the vault’s uncompromising design. Pressing on, they reach the inner door whose carved face challenges them; the spoken password—“<a href="../../entities/characters/gorin.html" class="entity-link entity-character" data-entity-name="Gorin" data-entity-type="characters" data-entity-preview="Gorin is widely described as a meticulous, middle‑aged figure with a compact, steady build and the self‑possessed poise of someone accustomed to...">Gorin</a>”—loosens its wards and grants passage to the crystal chamber.</p>
+<p>Within, a glowing blue crystal thrums with stored resonance. An attempt to claim it lashes out with a shock that staggers an ally, forcing a pause for quick healing before the team carefully insulates and frees the pulsing core. On their return through the artifact hall, a vessel leaking purple smoke ruptures, disgorging a shifting-faces creature that the party defeats, after which the vault’s oppressive tension visibly eases. Wrapped and secured, the crystal is carried upstairs and seated into the engine’s housing; the Forge’s shuddering harmonics smooth into a steady chord as wards brighten and the facility settles, stabilized at last.</p>
+        </section>
+        
+
+        <section class="entity-section">
             <h2 class="entity-section-title">Appearances</h2>
             <p>Featured in sessions: 1-2</p>
         </section>
         
             </div>
             
-            <footer class="site-footer">
-                <p>Generated by <a href="https://github.com/joshuatheengineer/tapestry" target="_blank">Tapestry</a></p>
-            </footer>
         </main>
     </div>
-    
+    <script>
+// Tapestry Static Site Core
+(function() {
+    'use strict';
+
+    // Mobile menu toggle
+    window.toggleMenu = function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            sidebar.classList.toggle('open');
+        }
+    };
+
+    // Entity preview tooltip
+    let tooltip = null;
+    let tooltipTimeout = null;
+    let hideTimeout = null;
+
+    function createTooltip() {
+        if (tooltip) return tooltip;
+        tooltip = document.createElement('div');
+        tooltip.className = 'entity-tooltip';
+        document.body.appendChild(tooltip);
+        return tooltip;
+    }
+
+    function showTooltip(link, e) {
+        const name = link.dataset.entityName;
+        const type = link.dataset.entityType;
+        const preview = link.dataset.entityPreview;
+        const image = link.dataset.entityImage;
+
+        if (!name) return;
+
+        clearTimeout(hideTimeout);
+
+        tooltipTimeout = setTimeout(() => {
+            const tt = createTooltip();
+
+            let html = '';
+            if (image) {
+                html += `<img src="${image}" alt="${name}" class="entity-tooltip-image" onerror="this.style.display='none'">`;
+            }
+            html += `<div class="entity-tooltip-name">${name}</div>`;
+            if (type) {
+                const typeLabel = type.replace(/s$/, '');
+                html += `<div class="entity-tooltip-type">${typeLabel}</div>`;
+            }
+            if (preview) {
+                html += `<div class="entity-tooltip-description">${preview}</div>`;
+            }
+
+            tt.innerHTML = html;
+
+            // Position tooltip
+            const rect = link.getBoundingClientRect();
+
+            let left = rect.left + (rect.width / 2) - 140;
+            let top = rect.top - 10;
+
+            // Adjust for viewport edges
+            if (left < 10) left = 10;
+            if (left + 280 > window.innerWidth - 10) {
+                left = window.innerWidth - 290;
+            }
+
+            // Position above or below link
+            tt.style.left = left + 'px';
+            if (top - tt.offsetHeight < 10) {
+                tt.style.top = (rect.bottom + 10) + 'px';
+            } else {
+                tt.style.top = (top - tt.offsetHeight) + 'px';
+            }
+
+            tt.classList.add('visible');
+        }, 300);
+    }
+
+    function hideTooltip() {
+        clearTimeout(tooltipTimeout);
+        hideTimeout = setTimeout(() => {
+            if (tooltip) {
+                tooltip.classList.remove('visible');
+            }
+        }, 100);
+    }
+
+    // Attach tooltip listeners to entity links
+    document.addEventListener('mouseover', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link && link.dataset.entityName) {
+            showTooltip(link, e);
+        }
+    });
+
+    document.addEventListener('mouseout', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link) {
+            hideTooltip();
+        }
+    });
+})();
+</script>
 </body>
 </html>

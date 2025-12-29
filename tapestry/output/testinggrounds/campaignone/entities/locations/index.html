@@ -191,10 +191,23 @@ body {
     display: block;
 }
 
+.card-no-link {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.card-no-link:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: var(--bg-card);
+    border-color: var(--border);
+}
+
 .card-image {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    object-position: top;
     border-radius: 0.375rem;
     margin-bottom: 1rem;
 }
@@ -272,16 +285,52 @@ body {
     border-bottom-style: solid;
 }
 
-.entity-link.entity-character::before {
-    content: "👤 ";
+/* Entity Preview Tooltip */
+.entity-tooltip {
+    position: fixed;
+    max-width: 280px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 4px 16px var(--shadow);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
 }
 
-.entity-link.entity-location::before {
-    content: "📍 ";
+.entity-tooltip.visible {
+    opacity: 1;
 }
 
-.entity-link.entity-faction::before {
-    content: "⚔️ ";
+.entity-tooltip-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.entity-tooltip-type {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
 }
 
 /* Session Content */
@@ -513,28 +562,28 @@ body {
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <div class="site-container">
         <nav class="sidebar">
-            <a href="index.html" class="site-title">CampaignOne</a>
+            <a href="../../index.html" class="site-title">CampaignOne</a>
             
         <div class="nav-section">
             <div class="nav-section-title">Entities</div>
             <ul class="nav-list">
-                <li><a href="entities/characters/index.html">Characters</a></li>
-                <li><a href="entities/locations/index.html" class="active">Locations</a></li>
-                <li><a href="entities/factions/index.html">Factions</a></li>
+                <li><a href="../../entities/characters/index.html">Characters</a></li>
+                <li><a href="../../entities/locations/index.html" class="active">Locations</a></li>
+                <li><a href="../../entities/factions/index.html">Factions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Sessions</div>
             <ul class="nav-list">
-                <li><a href="sessions/index.html">All Sessions</a></li>
+                <li><a href="../../sessions/index.html">All Sessions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Inventory</div>
             <ul class="nav-list">
-                <li><a href="inventory/index.html">Campaign Inventory</a></li>
+                <li><a href="../../inventory/index.html">Campaign Inventory</a></li>
             </ul>
         </div>
         
@@ -544,68 +593,194 @@ body {
             
         <header class="page-header">
             <h1 class="page-title">Locations</h1>
-            <p class="page-subtitle">6 locations in the campaign</p>
+            <p class="page-subtitle">9 locations in the campaign</p>
         </header>
         <div class="card-grid">
-            <a href="astor-falls-upper-district.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">Astor Falls Upper District</h3>
-                    
-                    <div class="card-meta">Sessions: 1</div>
+                <a href="veyrun.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Veyrun</h3>
+                        <p class="card-description">Veyrun was a world held in tense equilibrium: soot-dusted foundries and lantern-lit rail spurs pressed against wind-scoured cairns and rune-bitten men</p>
+                        <div class="card-meta">Sessions: 0</div>
+                    </div>
+                </a>
+                
+                <a href="ironwell.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Ironwell</h3>
+                        <p class="card-description">Ironwell is a fortified industrial city carved straight into the ribs of a canyon, its tiers hewn from dark stone and banded in riveted iron. Switchba</p>
+                        <div class="card-meta">Sessions: 0</div>
+                    </div>
+                </a>
+                
+                <a href="mirehollow.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Mirehollow</h3>
+                        <p class="card-description">Mirehollow is a mist-shrouded port city clinging to ancient seawalls and barnacled pilings, its skyline a ragged thicket of stilted warehouses, rope b</p>
+                        <div class="card-meta">Sessions: 0</div>
+                    </div>
+                </a>
+                
+                <a href="astral-observatory.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Astral Observatory</h3>
+                        <p class="card-description">The Astral Observatory in Asterfall was a renowned dome of stone and brass, veined with runic inlays that glimmered faintly in starlight. Within, spir</p>
+                        <div class="card-meta">Sessions: 0, 2</div>
+                    </div>
+                </a>
+                
+                <a href="the-astral-forge.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">The Astral Forge</h3>
+                        <p class="card-description">The Astral Forge is a looming arcane facility whose heart is a thunderous engine chamber, its brasswork conduits and suspended rings shedding a cold, </p>
+                        <div class="card-meta">Sessions: 1-2</div>
+                    </div>
+                </a>
+                
+                <a href="astor-falls-upper-district.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Astor Falls Upper District</h3>
+                        <p class="card-description">The Upper District of Astor Falls sat on high stone terraces, its broad plazas tied together by cut-stone steps and waist-high railings that looked ov</p>
+                        <div class="card-meta">Sessions: 1</div>
+                    </div>
+                </a>
+                
+                <a href="loomspire-district.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Loomspire District</h3>
+                        <p class="card-description">The Loomspire District clustered around a needlelike tower that gave it its name, a thicket of narrow brick mills and timbered workshops stitched toge</p>
+                        <div class="card-meta">Sessions: 2</div>
+                    </div>
+                </a>
+                
+                <a href="the-loomspire.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">The Loomspire</h3>
+                        <p class="card-description">The Loomspire was a soaring tower of interwoven stone arches laced together by shimmering thread-bridges that spanned the voids between buttresses lik</p>
+                        <div class="card-meta">Sessions: 2</div>
+                    </div>
+                </a>
+                
+                <a href="astor-falls.html" class="card-link">
+                    <div class="card">
+                        <img src="../../images/astor-falls.location.png" alt="Astor Falls" class="card-image">
+                        <h3 class="card-title">Astor Falls</h3>
+                        <p class="card-description">Asterfall was a gleaming capital terraced around the rim of a starfall crater, its districts stitched together by airy skybridges and constellations o</p>
+                        <div class="card-meta">Sessions: 0, 2</div>
+                    </div>
+                </a>
                 </div>
-            </a>
-            
-            <a href="the-astral-forge.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">The Astral Forge</h3>
-                    
-                    <div class="card-meta">Sessions: 1-2</div>
-                </div>
-            </a>
-            
-            <a href="astral-observatory.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">Astral Observatory</h3>
-                    
-                    <div class="card-meta">Sessions: 2</div>
-                </div>
-            </a>
-            
-            <a href="astor-falls.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">Astor Falls</h3>
-                    
-                    <div class="card-meta">Sessions: 2</div>
-                </div>
-            </a>
-            
-            <a href="loomspire-district.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">Loomspire District</h3>
-                    
-                    <div class="card-meta">Sessions: 2</div>
-                </div>
-            </a>
-            
-            <a href="the-loomspire.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">The Loomspire</h3>
-                    
-                    <div class="card-meta">Sessions: 2</div>
-                </div>
-            </a>
-            </div>
-            <footer class="site-footer">
-                <p>Generated by <a href="https://github.com/joshuatheengineer/tapestry" target="_blank">Tapestry</a></p>
-            </footer>
         </main>
     </div>
-    
+    <script>
+// Tapestry Static Site Core
+(function() {
+    'use strict';
+
+    // Mobile menu toggle
+    window.toggleMenu = function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            sidebar.classList.toggle('open');
+        }
+    };
+
+    // Entity preview tooltip
+    let tooltip = null;
+    let tooltipTimeout = null;
+    let hideTimeout = null;
+
+    function createTooltip() {
+        if (tooltip) return tooltip;
+        tooltip = document.createElement('div');
+        tooltip.className = 'entity-tooltip';
+        document.body.appendChild(tooltip);
+        return tooltip;
+    }
+
+    function showTooltip(link, e) {
+        const name = link.dataset.entityName;
+        const type = link.dataset.entityType;
+        const preview = link.dataset.entityPreview;
+        const image = link.dataset.entityImage;
+
+        if (!name) return;
+
+        clearTimeout(hideTimeout);
+
+        tooltipTimeout = setTimeout(() => {
+            const tt = createTooltip();
+
+            let html = '';
+            if (image) {
+                html += `<img src="${image}" alt="${name}" class="entity-tooltip-image" onerror="this.style.display='none'">`;
+            }
+            html += `<div class="entity-tooltip-name">${name}</div>`;
+            if (type) {
+                const typeLabel = type.replace(/s$/, '');
+                html += `<div class="entity-tooltip-type">${typeLabel}</div>`;
+            }
+            if (preview) {
+                html += `<div class="entity-tooltip-description">${preview}</div>`;
+            }
+
+            tt.innerHTML = html;
+
+            // Position tooltip
+            const rect = link.getBoundingClientRect();
+
+            let left = rect.left + (rect.width / 2) - 140;
+            let top = rect.top - 10;
+
+            // Adjust for viewport edges
+            if (left < 10) left = 10;
+            if (left + 280 > window.innerWidth - 10) {
+                left = window.innerWidth - 290;
+            }
+
+            // Position above or below link
+            tt.style.left = left + 'px';
+            if (top - tt.offsetHeight < 10) {
+                tt.style.top = (rect.bottom + 10) + 'px';
+            } else {
+                tt.style.top = (top - tt.offsetHeight) + 'px';
+            }
+
+            tt.classList.add('visible');
+        }, 300);
+    }
+
+    function hideTooltip() {
+        clearTimeout(tooltipTimeout);
+        hideTimeout = setTimeout(() => {
+            if (tooltip) {
+                tooltip.classList.remove('visible');
+            }
+        }, 100);
+    }
+
+    // Attach tooltip listeners to entity links
+    document.addEventListener('mouseover', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link && link.dataset.entityName) {
+            showTooltip(link, e);
+        }
+    });
+
+    document.addEventListener('mouseout', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link) {
+            hideTooltip();
+        }
+    });
+})();
+</script>
 </body>
 </html>

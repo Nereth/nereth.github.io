@@ -191,10 +191,23 @@ body {
     display: block;
 }
 
+.card-no-link {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.card-no-link:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: var(--bg-card);
+    border-color: var(--border);
+}
+
 .card-image {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    object-position: top;
     border-radius: 0.375rem;
     margin-bottom: 1rem;
 }
@@ -272,16 +285,52 @@ body {
     border-bottom-style: solid;
 }
 
-.entity-link.entity-character::before {
-    content: "👤 ";
+/* Entity Preview Tooltip */
+.entity-tooltip {
+    position: fixed;
+    max-width: 280px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 4px 16px var(--shadow);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
 }
 
-.entity-link.entity-location::before {
-    content: "📍 ";
+.entity-tooltip.visible {
+    opacity: 1;
 }
 
-.entity-link.entity-faction::before {
-    content: "⚔️ ";
+.entity-tooltip-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.entity-tooltip-type {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
 }
 
 /* Session Content */
@@ -513,28 +562,28 @@ body {
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <div class="site-container">
         <nav class="sidebar">
-            <a href="index.html" class="site-title">CampaignOne</a>
+            <a href="../../index.html" class="site-title">CampaignOne</a>
             
         <div class="nav-section">
             <div class="nav-section-title">Entities</div>
             <ul class="nav-list">
-                <li><a href="entities/characters/index.html" class="active">Characters</a></li>
-                <li><a href="entities/locations/index.html">Locations</a></li>
-                <li><a href="entities/factions/index.html">Factions</a></li>
+                <li><a href="../../entities/characters/index.html" class="active">Characters</a></li>
+                <li><a href="../../entities/locations/index.html">Locations</a></li>
+                <li><a href="../../entities/factions/index.html">Factions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Sessions</div>
             <ul class="nav-list">
-                <li><a href="sessions/index.html">All Sessions</a></li>
+                <li><a href="../../sessions/index.html">All Sessions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Inventory</div>
             <ul class="nav-list">
-                <li><a href="inventory/index.html">Campaign Inventory</a></li>
+                <li><a href="../../inventory/index.html">Campaign Inventory</a></li>
             </ul>
         </div>
         
@@ -547,20 +596,142 @@ body {
             <p class="page-subtitle">Character</p>
         </header>
         
-            <div class="entity-content">
-                
+            <div class="entity-profile">
+                <div class="entity-image-container">
+                    <img src="../../images/thalen-reed.character.png" alt="Entity image" class="entity-image">
+                </div>
+                <div class="entity-content">
+                    
         <section class="entity-section">
-            <h2 class="entity-section-title">Appearances</h2>
-            <p>Appeared in sessions: 1-2</p>
+            <h2 class="entity-section-title">Appearance</h2>
+            <p>Thalen Reed is a lean, weathered human man in his late twenties, all stringed muscle and patient stillness. Dark hair is tied back to keep clear of a star-etched longbow that rarely leaves his shoulder, and faint silver flecks in his eyes catch any stray light like distant constellations. He wears a long, travel-stained coat reinforced with leather plates over practical archer’s gear; the edges show scorch and scoring from recent close calls. A hood comes up whenever he takes a vantage, and well-worn boots speak to long miles on uncertain roads.<br>He keeps a battered journal close, often open in one hand while the other traces sky-marks with a chalk-stained thumb. Fletching cuts and bowstring calluses mark his fingers, and his movements are economical, deliberate, almost silent. The impression he gives is of a watchful silhouette at the edge of a storm—measured, prepared, and difficult to surprise.</p>
         </section>
         
+
+        <section class="entity-section">
+            <h2 class="entity-section-title">Personality</h2>
+            <p>Thalen is quiet and observant, speaking in a spare, dry deadpan that lands with more impact for its restraint. He distrusts institutions and titles but is fiercely protective of individuals, placing lived need above protocol. Methodical to a fault, he documents patterns—the heavens, the rifts, and the strange dreams that stalk his sleep—and tests assumptions before he trusts them. He listens more than he talks, and when he acts, it is precise and decisive.<br>Despite his reserve, he meets others where they are, answering earnestness with steadiness and fear with practical guidance. Small gestures—a quick, surprised high-five, a steadying hand in a crush of panicked civilians—reveal a warmth he rarely names. He values evidence, clear lines of responsibility, and the safety of bystanders; authority must earn his cooperation, but once earned, he honors it so long as it serves people first.</p>
+        </section>
+        
+
+        <section class="entity-section">
+            <h2 class="entity-section-title">Story Involvement</h2>
+            <p>A year before the Convergence, a rift opened near Thalen’s home and swallowed his younger sister. He begins tracking rift activity, mapping star patterns against torn places in the world and chasing rumors to <a href="../../entities/locations/astor-falls.html" class="entity-link entity-location" data-entity-name="Astor Falls" data-entity-type="locations" data-entity-preview="Asterfall was a gleaming capital terraced around the rim of a starfall crater, its districts stitched together by airy skybridges and constellations..." data-entity-image="../../images/astor-falls.location.png">Asterfall</a> to consult <a href="../../entities/locations/astral-observatory.html" class="entity-link entity-location" data-entity-name="Astral Observatory" data-entity-type="locations" data-entity-preview="The Astral Observatory in Asterfall was a renowned dome of stone and brass, veined with runic inlays that glimmered faintly in starlight. Within,...">the Astral Observatory</a>. On the night he arrives, the Starfall Convergence goes wrong; a new rift blooms above the city. He shifts from watcher to shield, helping defend civilians as creatures spill through. In the aftermath, he draws the attention of the Archsage—first scrawled in his notes as “<a href="lyrian-vost.html" class="entity-link entity-character" data-entity-name="Lyrian Vost" data-entity-type="characters" data-entity-preview="Lyrian Vost is a woman in her middle years with a tall, spare build and a habit of holding herself ramrod-straight, as if bracing against an unseen...">Lyrian Vost</a>,” later corrected to <a href="lyrien-vaust.html" class="entity-link entity-character" data-entity-name="Lyrien Vaust" data-entity-type="characters" data-entity-preview="Lyrien Vaust carried the composed gravity of a lifelong scholar-commander. In late middle age with silver-shot dark hair swept back from a thoughtful...">Lyrien Vaust</a>—who recruits him to investigate the growing instability.<br>During the Observatory crisis, Thalen studies the festival sky from a high railing, compares charts, and answers <a href="../../entities/locations/the-astral-forge.html" class="entity-link entity-location" data-entity-name="The Astral Forge" data-entity-type="locations" data-entity-preview="The Astral Forge is a looming arcane facility whose heart is a thunderous engine chamber, its brasswork conduits and suspended rings shedding a cold,...">the Astral Forge</a>’s warning with action. He dissolves two rift-things with clean shots, then descends to the lower vault with the group. In the engine chamber, he misjudges a metal sphere and takes a minor blast for it, but stays in the fight. He stands with the others as “<a href="gorin.html" class="entity-link entity-character" data-entity-name="Gorin" data-entity-type="characters" data-entity-preview="Gorin is widely described as a meticulous, middle‑aged figure with a compact, steady build and the self‑possessed poise of someone accustomed to...">Gorin</a>” opens the inner vault, shares a quick celebratory slap of palms, then braces through the crystal’s shock. A shifting-faces entity lashes his mind; he grits through the psychic scrape and wounds it, buying the seconds needed for the crystal to calm and stabilize the engine.<br>With the city spared immediate catastrophe, Thalen turns back to the sky. He notes the widening fracture above the Observatory, then spots a cloaked figure slipping through a warped alley and gives chase. At <a href="../../entities/locations/the-loomspire.html" class="entity-link entity-location" data-entity-name="The Loomspire" data-entity-type="locations" data-entity-preview="The Loomspire was a soaring tower of interwoven stone arches laced together by shimmering thread-bridges that spanned the voids between buttresses...">The Loomspire</a> he identifies a fate-inversion sigil threaded through its wards—an intentional wrongness that flips outcomes—and looses at the fleeing culprit, only to watch his arrow pass through a half-real body. He remains in Vaust’s orbit by choice, following the trail of inverted fates and unstable rifts while his journal fills with new constellations and the unanswered question of his sister’s fate.</p>
+        </section>
+        
+
+        <section class="entity-section">
+            <h2 class="entity-section-title">Appearances</h2>
+            <p>Appeared in sessions: 0-2</p>
+        </section>
+        
+                </div>
             </div>
             
-            <footer class="site-footer">
-                <p>Generated by <a href="https://github.com/joshuatheengineer/tapestry" target="_blank">Tapestry</a></p>
-            </footer>
         </main>
     </div>
-    
+    <script>
+// Tapestry Static Site Core
+(function() {
+    'use strict';
+
+    // Mobile menu toggle
+    window.toggleMenu = function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            sidebar.classList.toggle('open');
+        }
+    };
+
+    // Entity preview tooltip
+    let tooltip = null;
+    let tooltipTimeout = null;
+    let hideTimeout = null;
+
+    function createTooltip() {
+        if (tooltip) return tooltip;
+        tooltip = document.createElement('div');
+        tooltip.className = 'entity-tooltip';
+        document.body.appendChild(tooltip);
+        return tooltip;
+    }
+
+    function showTooltip(link, e) {
+        const name = link.dataset.entityName;
+        const type = link.dataset.entityType;
+        const preview = link.dataset.entityPreview;
+        const image = link.dataset.entityImage;
+
+        if (!name) return;
+
+        clearTimeout(hideTimeout);
+
+        tooltipTimeout = setTimeout(() => {
+            const tt = createTooltip();
+
+            let html = '';
+            if (image) {
+                html += `<img src="${image}" alt="${name}" class="entity-tooltip-image" onerror="this.style.display='none'">`;
+            }
+            html += `<div class="entity-tooltip-name">${name}</div>`;
+            if (type) {
+                const typeLabel = type.replace(/s$/, '');
+                html += `<div class="entity-tooltip-type">${typeLabel}</div>`;
+            }
+            if (preview) {
+                html += `<div class="entity-tooltip-description">${preview}</div>`;
+            }
+
+            tt.innerHTML = html;
+
+            // Position tooltip
+            const rect = link.getBoundingClientRect();
+
+            let left = rect.left + (rect.width / 2) - 140;
+            let top = rect.top - 10;
+
+            // Adjust for viewport edges
+            if (left < 10) left = 10;
+            if (left + 280 > window.innerWidth - 10) {
+                left = window.innerWidth - 290;
+            }
+
+            // Position above or below link
+            tt.style.left = left + 'px';
+            if (top - tt.offsetHeight < 10) {
+                tt.style.top = (rect.bottom + 10) + 'px';
+            } else {
+                tt.style.top = (top - tt.offsetHeight) + 'px';
+            }
+
+            tt.classList.add('visible');
+        }, 300);
+    }
+
+    function hideTooltip() {
+        clearTimeout(tooltipTimeout);
+        hideTimeout = setTimeout(() => {
+            if (tooltip) {
+                tooltip.classList.remove('visible');
+            }
+        }, 100);
+    }
+
+    // Attach tooltip listeners to entity links
+    document.addEventListener('mouseover', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link && link.dataset.entityName) {
+            showTooltip(link, e);
+        }
+    });
+
+    document.addEventListener('mouseout', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link) {
+            hideTooltip();
+        }
+    });
+})();
+</script>
 </body>
 </html>

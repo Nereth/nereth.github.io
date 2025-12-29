@@ -191,10 +191,23 @@ body {
     display: block;
 }
 
+.card-no-link {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.card-no-link:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: var(--bg-card);
+    border-color: var(--border);
+}
+
 .card-image {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    object-position: top;
     border-radius: 0.375rem;
     margin-bottom: 1rem;
 }
@@ -272,16 +285,52 @@ body {
     border-bottom-style: solid;
 }
 
-.entity-link.entity-character::before {
-    content: "👤 ";
+/* Entity Preview Tooltip */
+.entity-tooltip {
+    position: fixed;
+    max-width: 280px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 4px 16px var(--shadow);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
 }
 
-.entity-link.entity-location::before {
-    content: "📍 ";
+.entity-tooltip.visible {
+    opacity: 1;
 }
 
-.entity-link.entity-faction::before {
-    content: "⚔️ ";
+.entity-tooltip-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.entity-tooltip-type {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
 }
 
 /* Session Content */
@@ -513,28 +562,28 @@ body {
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <div class="site-container">
         <nav class="sidebar">
-            <a href="index.html" class="site-title">CampaignOne</a>
+            <a href="../../index.html" class="site-title">CampaignOne</a>
             
         <div class="nav-section">
             <div class="nav-section-title">Entities</div>
             <ul class="nav-list">
-                <li><a href="entities/characters/index.html">Characters</a></li>
-                <li><a href="entities/locations/index.html">Locations</a></li>
-                <li><a href="entities/factions/index.html">Factions</a></li>
+                <li><a href="../../entities/characters/index.html">Characters</a></li>
+                <li><a href="../../entities/locations/index.html">Locations</a></li>
+                <li><a href="../../entities/factions/index.html">Factions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Sessions</div>
             <ul class="nav-list">
-                <li><a href="sessions/index.html" class="active">All Sessions</a></li>
+                <li><a href="../../sessions/index.html" class="active">All Sessions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Inventory</div>
             <ul class="nav-list">
-                <li><a href="inventory/index.html">Campaign Inventory</a></li>
+                <li><a href="../../inventory/index.html">Campaign Inventory</a></li>
             </ul>
         </div>
         
@@ -550,104 +599,205 @@ body {
         
         <nav class="session-nav"><a href="summary.html">Summary</a><a href="story.html" class="active">Story</a><a href="inventory.html">Inventory</a></nav>
         <div class="session-content">
-            <div class="story-text"><p>Whispers of the Convergence</p>
-<p>Lanterns the size of a man’s head drifted like tethered moons above the <a href="../../entities/locations/astor-falls-upper-district.html" class="entity-link entity-location">Upper District</a>, their silk skins painted with constellations that would not grace the sky until winter. The air was crisp and faintly metallic the way only autumn nights in high stone places could be, and <a href="../../entities/locations/astor-falls.html" class="entity-link entity-location">Astor Falls</a> obliged the spectacle—ribbons of laughter tangled with lute-strings and drumbeats, the hot sweetness of fried dough and cardamom, the mineral cool of the fountain’s spray. Stalls leaned close to one another in gaudy rows, pennants fluttered from balconies, and glass charms chimed in the evening breeze. All of it rose into the breathless hush that comes when a crowd believes the stars themselves are about to lean down and listen.</p>
-<p><a href="../../entities/characters/thalen-reed.html" class="entity-link entity-character">Thalen</a> watched from a parapet, cloak hooded, journal open on the stone beside him to a page crowded with neat lines and measured angles. He had marked the path of the Starfall Convergence three times and still did not trust it. The patterns did not lie, but they did not promise safety either. Under his gloved thumb an inked curve crossed another with stubborn precision, and some tension eased in his chest; he found comfort in the way the heavens kept their word even when people did not. Somewhere below, a fiddler dragged his bow along a string and the note stretched thin as silk. Thalen checked the time against the cold angle of the stars and thought, not for the first time, that it is easier to read a sky than a human face.</p>
-<p>Below him, <a href="../../entities/characters/kivra-embercoil.html" class="entity-link entity-character">Kivra</a> wove through a weft of dancers with a stack of skewered dough in one hand and two cups wedged against her ribs; the second cup was for backup, and she did not apologize for wise habits. Her grin claimed the world was a dare. <a href="../../entities/characters/brother-moss.html" class="entity-link entity-character">Brother Moss</a> stood near the long-basin fountain, eyes closed, his broad, earthen hands spread as if feeling for cracks beneath the surface. At first glance, he looked like a man hewn from river stone and the effort of carrying it—shoulders square, hair a dark river pulled back with a leather tie, clothes simple and clean. When he finally opened his eyes, he stared into the water as if it had spoken to him and he was weighing the reply.</p>
-<p>“It is uneasy,” he said, voice low as gravel in a stream. The fountain’s carved fish spat in staggered rhythm; for a moment Thalen heard the cadence as a heartbeat seeking a lost measure.</p>
-<p>“You keep saying that,” Kivra said, offering him a skewer. “What does uneasy water sound like?”</p>
-<p>“Like a sigh that forgot how to finish.”</p>
-<p>“You’re insufferable,” she said, delighted. “Poetry, giant.”</p>
-<p>He accepted the dough, as one accepts weather.</p>
-<p>Silver shifted at the edge of Thalen’s vision. He looked up to find a woman cutting toward them with the confidence of someone who always arrived in the right place by design. She wore deep blue robes that drank starlight, her silver hair braided back from a serious face. Sigils glowed faintly along her sleeves; they seemed to notice him noticing and hummed in return.</p>
-<p>“Thank you for meeting with me,” she said when they gathered, voice steady, measured like a scholar’s but wound with urgency. “I am Archsage <a href="../../entities/characters/lyrian-vost.html" class="entity-link entity-character">Lyrian Vost</a>.”</p>
-<p>Kivra raised a hand, then realized it was the one with pastry and raised the other instead. “Is this about to be one of those ‘we have little time’ conversations? Because I’m open to it, but I should pace my snacks.”</p>
-<p>Lyrian’s mouth pressed into something that might have been a smile in a better year. “<a href="../../entities/locations/the-astral-forge.html" class="entity-link entity-location">The Astral Forge</a> is destabilizing. The Convergence tonight may worsen the effect. I need people who can act quickly if something goes wrong.”</p>
-<p>“Define ‘something,’” Thalen said, closing his journal. He tucked the feeling of relief—finally, purpose—behind his ribs. He always had an easier time breathing when the problem had a name.</p>
-<p>“Rifts. Creatures. Distortions.” Lyrian’s gaze flicked to the sky as if measuring the angle of danger. “Reality thinning.”</p>
-<p>“Cool, cool,” Kivra said, then paused. “Less cool.”</p>
-<p>“The Forge whispered your names,” Lyrian added, as if it were merely a datum.</p>
-<p>Brother Moss remained very still. If water could have set his shoulders, it would have. “It does that only when threads come loose,” he said quietly.</p>
-<p>“Fraying like a sweater,” Kivra said, “or fraying like reality exploding?”</p>
-<p>“The second,” Lyrian said.</p>
-<p>The plaza turned to silver. A pulse went through the world—the kind that sets every hair rising in a prickled wave, that makes the crowd’s roar stutter and the music hit a wrong note. Thalen looked up and the sky cracked like a pane of glass scored long ago and finally given permission to break. It sheared open, not quite a wound, not quite a mouth, and three insect-like creatures crawled out, all hinge and chitin and a film-gloss sheen that made them look wet. Their eyes were too many and their legs too keen for a world accustomed to softer edges.</p>
-<p>Kivra dropped her skewers in a spill of crisped sugar. “R.I.P.,” she said solemnly. “A noble sacrifice.”</p>
-<p>The crowd broke the way water does when a stone remembers it was always chaos. Tables toppled, benches scraped, mothers yanked children by their sleeves toward alleys that suddenly felt too narrow. Thalen moved without thinking; the bow had been leaning against the railing beside his journal and now it was in his hands, string taut against his fingertips. A child tripped in a ring of spilled drink—the first creature’s head snapped toward her, and Thalen’s arrow took it through an eye. The head dissolved into a dust that caught lantern-light as it fell.</p>
-<p>Kivra’s answer was fire. She flung her hand and a bolt leapt from her fingers, a clean spear of focused heat that sent the second creature reeling, its carapace blistering and peeling with an ugly hiss. Brother Moss lifted his palm and spoke a word that was less a sound than a shape; radiance fell like a quiet verdict. The creature seized under it and smoke leaked from its seams.</p>
-<p>One of them skipped across the flagstones and plowed into Kivra with a force that knocked the breath from her lungs and a curse from her mouth. She found her footing with a laugh that sounded too much like thrill and too little like fear. Brother Moss flicked a bolt of guiding light past her shoulder; the remaining creature lifted its head toward the glow, and Kivra obliged it with another wash of flame that kissed the chitin to ash.</p>
-<p>“We are unstoppable,” Kivra said, though her sleeve smoked where a jagged leg had caught it.</p>
-<p>“You almost died twice,” Brother Moss said, as if stating the weather.</p>
+            <div class="story-text"><p>The Sigh That Forgot How to Finish</p>
+<p>Lanterns floated like slow stars over the Upper District, their thin-paper skins trembling each time a chorus rose from the plaza. The city wore its joy proudly during the Starfall Convergence: silks and streamers and little silver bells, the air sweet with sugar and spiced milk, the sky a dark vault pricked with patient points of light. The broad stair of the plaza gleamed with swept stone, and the fountain at its heart threw silver into the night, sending a cool dampness toward flushed faces. <a href="../../entities/characters/thalen-reed.html" class="entity-link entity-character" data-entity-name="Thalen Reed" data-entity-type="characters" data-entity-preview="Thalen Reed is a lean, weathered human man in his late twenties, all stringed muscle and patient stillness. Dark hair is tied back to keep clear of a..." data-entity-image="../../images/thalen-reed.character.png">Thalen</a> watched from a stone balustrade, hood drawn, boots braced, the weight of his journal steady against one palm. He compared what the heavens offered to what he’d inked in solitude—arc paths, conjunctions, the obscene patience of stellar clocks. He could find comfort in a chart; it never lied. People did. And sometimes the sky itself forgot its promises.</p>
+<p>Down in the crowd, <a href="../../entities/characters/kivra-embercoil.html" class="entity-link entity-character" data-entity-name="Kivra Embercoil" data-entity-type="characters" data-entity-preview="Kivra Embercoil is a young fire genasi woman with a wiry, quick-moving build and ember-orange hair that flickers like banked coals. Constellations of..." data-entity-image="../../images/kivra-embercoil.character.png">Kivra</a> fought a losing battle against abundance. She carried three skewers of fried dough, each dusted with shimmering sugar, a cup of something steaming, and a second cup tucked into the crook of her elbow, insurance against dryness or disappointment. She moved with the arrogant grace of someone who believed in snacks as both philosophy and shield. Heat from the fry-stalls licked her shins; cinnamon hung in the air with a promise of simple mercy. When she stopped near the fountain, crumbs glittered at her boots like tiny fallen stars.</p>
+<p><a href="../../entities/characters/brother-moss.html" class="entity-link entity-character" data-entity-name="Brother Moss" data-entity-type="characters" data-entity-preview="Brother Moss is a tall firbolg male with moss‑green fur and gentle, observant eyes. Their broad, soft build carries the quiet strength of old..." data-entity-image="../../images/brother-moss.character.png">Brother Moss</a> stood by the fountain’s lip, hands folded, his eyes half-closed. He was large in a way that made people give him room, broad-shouldered and quiet, with the sort of stillness that pulled sound toward it. The water’s murmur had turned brittle. He listened to it the way a healer listens to a patient who has hidden pain too long, as though the fountain hid a bruise at its core.</p>
+<p>“You keep saying that,” Kivra said, pinching off a crisp corner and offering it. “What does uneasy water sound like?”</p>
+<p>“Like a sigh that forgot how to finish,” Brother Moss said. He did not take the pastry. “Like a thought interrupted.”</p>
+<p>“Okay. Poetry, giant.” She kept the piece for herself.</p>
+<p>Silver hair cut a neat line through the press of bodies as a woman in deep blue robes approached—sigils crawled along her sleeves in faint luminescence, and her expression had a distant, sleepless edge. She threaded through the festival as if gravity did the work for her, and when she reached the fountain she lifted a hand and somehow gathered them together without touching any of them, as if the city’s noise bent around her purpose.</p>
+<p>“Thank you for meeting with me,” she said, when they’d found a pocket of space near the water. “I am <a href="../../entities/characters/lyrian-vost.html" class="entity-link entity-character" data-entity-name="Lyrian Vost" data-entity-type="characters" data-entity-preview="Lyrian Vost is a woman in her middle years with a tall, spare build and a habit of holding herself ramrod-straight, as if bracing against an unseen...">Lyrian Vost</a>.”</p>
+<p>“Do you have fried doughnuts?” someone asked from behind Lyrian’s shoulder, bright and far too pleased. Speaker-00 sidled into the circle, her hair a mess of dark curls, her eyes with that glimmering, unruly focus of someone who read dreams like maps and maps like jokes.</p>
+<p>Kivra lifted her sticks. “I take my snacks seriously.”</p>
+<p>“This is wise,” Brother Moss agreed.</p>
+<p>Lyrian did not smile. “<a href="../../entities/locations/the-astral-forge.html" class="entity-link entity-location" data-entity-name="The Astral Forge" data-entity-type="locations" data-entity-preview="The Astral Forge is a looming arcane facility whose heart is a thunderous engine chamber, its brasswork conduits and suspended rings shedding a cold,...">The Astral Forge</a> is destabilizing,” she said, and the easy brightness around them thinned. “The convergence tonight may worsen the effect. I need people who can act quickly if something goes wrong.”</p>
+<p>“Define ‘something,’” Speaker-00 said, already leaning around Lyrian to stare at the sky.</p>
+<p>“Rifts. Creatures. Distortions. Reality thinning.”</p>
+<p>“Cool, cool, cool.”</p>
+<p>Thalen’s hand tightened on his journal. Not a prophecy he liked.</p>
+<p>“Because the Astral Forge whispered your names,” Lyrian added.</p>
+<p>“Oh, that’s not ominous at all,” Speaker-00 said. She squinted up. “Fraying like a sweater, or fraying like reality exploding?”</p>
+<p>Lyrian very slightly inclined her head. “The second one.”</p>
+<p>“The sky cracks like glass,” Speaker-00 murmured, and then flung her arms out. “There it is.”</p>
+<p>The first pulse of light was pure and silver, washing the plaza in a cold tide. Music clipped off mid-note. Cheers broke into shrieks. The air tore open above the farthest ring of lanterns, a slit in velvet widening until it showed nothing behind it at all. Three insect-things levered themselves through, legs like scissoring iron, faceted eyes milky and wide with unmeaning. They crawled down the empty air toward warm breath and soft skin and the terrible aesthetics of joy.</p>
+<p>Kivra’s fried dough met the stones with a mortal patter. “R.I.P., dough,” she said. “A noble sacrifice.”</p>
+<p>They moved together without looking to see that the others moved. The crowd surged away, wardens in cobalt sashes whistling and shoving, children scooped up and carried like parcels. Thalen was already striding, already drawing and setting. The first arrow went where he asked it to go—through an exposed seam, under a plate, into something that made the creature’s body shatter not like meat but like packed ash. It dissolved in a gray spray that hung glittering before gravity remembered its duty.</p>
+<p>“You keep doing that,” Speaker-00 said, delighted. “Dusty bug!”</p>
+<p>Sacred light kindled in Brother Moss’s upturned palm, not the zeal of a zealot but the precise mercy of someone who knew what needed to be done and did not confuse it with anger. He cast it toward the next creature as it scuttled over the fountain’s edge. The radiance took hold, and the thing let out a pitchless screech as plates warped and joints seized.</p>
+<p>Kivra had both hands free now. She lifted her fingers and snapped them, the air heating of its own sudden will. Flame leapt like a fox and wrapped itself around chitin. Soot gusted.</p>
+<p>Speaker-00 darted at the third insect, and for a heartbeat it looked like she might kick it over the edge of the plaza’s stone ring and down into the gardens below, sheer audacity making up the difference between poor plan and nimble aim. Her foot met carapace and slid. She pinwheeled a little, face twisted in mock betrayal. “My foot is also cursed,” she announced.</p>
+<p>The creature pivoted toward Kivra and struck—plates slid, a limb scissored, and she yelped, stepping back with both hands up as if warding off a greasy insult. Sugar spattered from her sleeves.</p>
+<p>Thalen did not aim for the center of mass that time. The second arrow threaded the quick, mean space between strike and recoil and anchored the thing to the fountain’s rim for the heartbeat it took for Brother Moss’s next light to find it. It exploded into a cloud of shimmering dust that caught in their hair and eyelashes.</p>
+<p>Speaker-00 blew it from her lips. “We are unstoppable.”</p>
+<p>“You almost died twice,” Brother Moss said mildly.</p>
 <p>“I said what I said.”</p>
-<p>The square was a windblown mess—sugar grit underfoot, lanterns bobbing uncertainly, the fountain’s spray blown thin into a glittering veil. The rift sealed itself with an exhausted shiver that left the stars misaligned to the eye; they seemed to throb in place like a bruise.</p>
-<p>Lyrian was already moving. “Thank the stars. You were faster than I’d hoped. Come.” She led them along the arc of the terrace, through the slanting shadows of colonnades and past toppled stools, across a promenade where banners from the Guild of Lenses snapped against their poles. The <a href="../../entities/locations/astral-observatory.html" class="entity-link entity-location">observatory</a> speared the district’s western edge, its dome laminated with mirrored constellations, its shutters flung open to the trembling sky. From its high parapet spilled a frost of starlight, pooling pale on the steps. Bells in the lower wards began to ring, out of rhythm and out of sequence—panic trying to sound like order.</p>
-<p>“The Astral Forge is destabilizing,” Lyrian said as they took the broad marble stair, their footfalls too loud now in the sudden thinness of the crowd. “I need you to retrieve a focusing crystal from the lower vault. The engine won’t hold without it.”</p>
-<p>“So we break in,” Kivra said, delighted.</p>
-<p>“Yes, Kivra,” Lyrian said dryly. “It is a sanctioned break.”</p>
-<p>“What’s in the vault?” Thalen asked, falling in beside her. The handrail was warm where many hands had gripped it; it smelled faintly of oil and chalk.</p>
+<p>Lyrian’s calm had a hairline crack in it. She glanced once to the ragged seam still faint in the sky and then back to them. “Thank the stars,” she breathed, and then, even as waves of panic rippled through the plaza, she fixed them with that same sleepless attention. “The Astral Forge is destabilizing. I need you to retrieve a focusing crystal from the lower vault.”</p>
+<p>“So we break in,” Kivra said, already stooping with a small sound of mourning to assess the survivability of any remaining pastry.</p>
+<p>“Yes, Kivra,” Lyrian said, as if she had correctly anticipated both remark and salvage attempt.</p>
+<p>“What’s in the vault?” Speaker-00 asked, dream-bright.</p>
 <p>“Artifacts. Dangerous ones.”</p>
-<p>“Excellent,” Kivra murmured.</p>
-<p>They crossed the observatory’s grand hall—polished stone underfoot, a brass armillary hushing along its axis, lenses and mirrors sleeping in their racks like folded wings. Chalkboard slates lined the walls, crowded with formulae that Thalen could not help but glance at as they passed, and on a high table a sextant lay beside a stack of star charts with weights on the corners to keep them from fluttering away in the drafts. They passed beneath a vaulted arch and the warmth of braziers gave way at once to the breath of the underworks.</p>
-<p>They descended into the observatory’s belly, leaving lantern laughter behind for stone and echo. The lights in the sconces flickered in a rhythm that made Thalen think of heartbeats under a doctor’s hand; somewhere below, something metallic scraped on stone, like claws being sharpened on a whet. The smell changed too—oil and ozone, damp stone, the copper tang of old magic flaked and fallen like rust.</p>
-<p>“Do you hear that?” he asked.</p>
-<p>Brother Moss tilted his head. “Movement. And something that wishes to be a machine.”</p>
-<p>Kivra cupped a hand to her mouth and whisper-shouted, “Hello?”</p>
-<p>Thalen closed his eyes. He counted to three. He opened them again. “Stealth—”</p>
-<p>“—is for cowards.” Kivra flashed him a grin, then nudged his shoulder. “Relax. We’re heroes by appointment.”</p>
-<p>The lower vault’s antechamber glowed faintly, brass and bronze and old enchantments that hummed like bees in a wall. A great brass door at the far end bore a carved face with a long, patient mouth and eyes closed in an expression of permanent judgment. The thresholds were grooved by centuries of feet. As they approached, Kivra held up a key Lyrian had given them as if it were a relic.</p>
-<p>She slid it into the lock.</p>
-<p>The door opened.</p>
-<p>“I did it,” she said, triumphant.</p>
-<p>“It was a key,” Thalen said, but he couldn’t help the lift at one corner of his mouth.</p>
-<p>Inside, a hallway unfurled, lined on both walls with pedestals supporting curiosities in glass and metal—a mirrored mask that reflected a stranger when you stared into it, a tangle of wire that sang to itself in a minor key, a chalice that held a stillness so sharp it made his ears pop. Faint light lapped at their bases in gentle pulses, as if the artifacts themselves breathed slowly. One object leaked purple smoke that drifted downward instead of up, pooling around its base like the shadow of a storm.</p>
-<p>Kivra reached toward it as if toward a cat. “Don’t,” Thalen and Brother Moss said together. She froze, then sighed and tucked both hands decisively into her armpits.</p>
-<p>Something clinked and rolled; a metal sphere no larger than a bucket tipped from its cradle and clattered to the floor. It sprouted spindly legs with unpleasant clicks, opened a single glowing eye, and whirred as its iris tightened down to a bright point.</p>
-<p>“Baby,” Kivra said, soft with doomed affection.</p>
-<p>“That is not a baby,” Brother Moss said.</p>
-<p>It charged. Thalen’s arrow rang off the casing with a sound that made his teeth hurt. The thing leapt, striking Kivra with a crack that drove her back a step; she hissed between her teeth and planted her palm in the air. Radiance fell again at Brother Moss’s word, a column of light that burned the thing’s surface. Kivra flicked two fingers and drew a hot line across the room; it struck the eye dead-center. Fire crawled under its plating like water under ice. The thing screamed with a sound that had too many edges and then came apart all at once, shards and smoke, the blast skittering across the floor like a thrown plate breaking into a hundred pieces.</p>
-<p>Thalen ducked; a sliver kissed his cheek and stung. Kivra wiped blood from her knuckles with the back of her wrist and grinned sideways. “Worth it?”</p>
-<p>“You say that too often,” Brother Moss said, examining a welt rising beneath Thalen’s collarbone with gentle, practical hands.</p>
-<p>“And I mean it every time,” she said.</p>
-<p>The purple-smoke artifact bubbled in a way that suggested disagreement with reality. Threads of violet drifted toward them and curled against their boots as if testing for heat.</p>
-<p>“Later,” Thalen muttered, feeling the tickle of it in his lungs.</p>
-<p>Beyond the hallway, another door waited: a smooth face carved with stars and a stylized forge, a hammer raised over an anvil. The air before it was cool and unmoving, as if the stone itself were holding its breath. As they stepped near, the carved eyes opened. Stone rolled like old shoulders stretching.</p>
-<p>“Password?” it said, the voice somber as an elder’s.</p>
-<p>“No,” Kivra said.</p>
-<p>The door smiled, slow as dawn. “Incorrect, but poetic.”</p>
-<p>Thalen tipped his head to study the designs. The starwork in the upper corners aligned with the Convergence’s path. The hammer’s angle was a priest’s symbol, not a smith’s. The name came to his mouth with the comfort of a remembered prayer. “<a href="../../entities/characters/gorin.html" class="entity-link entity-character">Gorin</a>,” he said.</p>
-<p>“Correct,” said the door, pleased, and unlatched itself.</p>
-<p>Kivra raised her hand. Thalen met it without thinking. Their palms slapped a quiet celebration in the hush. Brother Moss made a face as if he were trying to disapprove and failing.</p>
-<p>The inner vault was cool as a cavern and blue-lit by the thing at its heart. The crystal sat on a pedestal in a web of bronze filaments, a shard of sky that had never known clouds. It pulsed with light in a slow, solemn rhythm that matched the beat Thalen had been hearing in the walls. Kivra reached for it.</p>
-<p>“Wait,” Brother Moss said, but too late. Her fingers touched and every hair on Thalen’s arms lifted as if someone had drawn a comb of lightning through the air. Kivra hissed, snatched her hand back with a laugh that tried to be flippant and failed only a little.</p>
-<p>“I regret nothing,” she said, shaking out tingling fingers.</p>
-<p>Brother Moss laid a hand over hers. Warmth went from him into her; the sting eased from her skin, her breath leveled. He shook his head when she looked at him. “Do not call me Moss Dad.”</p>
-<p>“Too late,” she said, and wrapped the crystal in a strip of cloth as if swaddling a fractious child. She looked at Thalen, eyes bright with the aftertaste of lightning. “Do you want to poke it?”</p>
-<p>“I want to get it to the engine without any more epiphanies,” he said, though part of him itched to see if it would say anything new to his bones.</p>
-<p>The vault shuddered. A tremor ran through the brass pedestals, glass covers chimed, dust sifted. The purple-smoke artifact in the hall behind them—patient no longer—came apart as if something inside had decided it was done waiting. Smoke didn’t so much pour as unfurl, and from it rose a figure that could not decide which face to wear. It had a dozen at once and none at all, shifting skins like someone flipping desperately through a book for the right page. Its edges were wrong. It slid forward with a grace that made Thalen’s stomach climb into his throat.</p>
-<p>“Back,” he said, drawing another arrow, and Kivra stepped sideways without being told, giving him a clean line.</p>
-<p>She cast first, a line of fire that bit into the shifting thing and made its faces stutter, the mouths stalling on a note that had never been sung so much as bitten. The creature’s attention lanced to Thalen with a focus that left his joints aching. He loosed and his arrow flew true, striking something that did not want to be struck—but when the impact came, pain came with it. Not in the old ways. It moved along his thoughts like fingers searching through a drawer for a familiar shape and closing on memory instead. He staggered against the pedestal, teeth clenched as if against a chisel.</p>
-<p>Brother Moss pushed a word through the air and light flared again; the thing shivered away from it like shadow from a door opening. Thalen found himself breathing hard in a room that had very little air to begin with. Kivra tried again, her next spell flaring against the stone at the wrong angle, shards of fired magic scattering like sparks from a misstruck steel. She swore, quickly, lightly, a dancer recovering a misstep. She lifted her hand again and the air crackled around her knuckles, a wild skein of energy that couldn’t make up its mind which element it wanted to be—her favorite kind. It leapt, caught the creature square, and for a heartbeat every face it wore turned toward her with something like recognition and then nothing at all. Wrongness shuddered, wavered.</p>
-<p>Brother Moss’s voice filled the vault again, a steadiness in the way a long river is steady. Radiance fell like a hand placed where nothing fits. The creature unraveled, each face pulling away from itself, smoke thinning to a thread and then to nothing. The air sighed, the kind of sigh that had remembered how to finish.</p>
-<p>Kivra wiped an arm across her forehead and made a face. “We are unstoppable,” she said, in case anyone had forgotten.</p>
-<p>“You almost died twice,” Brother Moss said.</p>
-<p>“I said what I said,” she replied, and carefully tucked the wrapped crystal under her arm like a precious parcel. She poked it. “Behave.”</p>
-<p>“Stop,” Thalen and Brother Moss said together, but neither of them reached to make her. He was not sure when they had become this, the three of them moving around one another like articulated parts of a whole. He did not mind.</p>
-<p>They retraced their steps through the artifact hall, past the chalice of sharpened silence and the wire that still hummed to itself, their reflections thin and strange in the mirrored mask’s glass. The ascent back to the engine was a spiral of iron and stone; their boots rang on each tread. With every level the temperature shifted—the damp mineral cool gave way to dry heat, the smell of old paper layered over oil and hot dust. Above, the Forge complained in deep, throbbing notes that pressed against the ribs. Voices echoed in the dome: technicians calling to one another, the slap of leather aprons and the crackle of distant spell-fire as someone bled excess energy to ground.</p>
-<p>They climbed into the observatory’s heart where the Astral Forge crouched like a god’s engine. Rings and lenses turned within one another, anchors and armatures held in exacting tension, all of it fed by the great mirrored dish that drank starlight from the open dome and poured it into the engine’s throat. It had been humming since they entered, but now the sound frayed at the edges, notes dropping out of the chorus and failing to find their way back. Sparks ghosted along copper rails. A hairline fracture of light skittered up a pillar and vanished.</p>
-<p>Lyrian waited with her hands wound into the semicircle rail the way a drowning person clutches a rope. The blue wash of the machine threw the lines of her face into stark relief. “Place it into the engine,” she said, a command made of hope.</p>
-<p>Kivra mounted the little service ladder without fanfare, braid swinging against the back of her neck, and set the wrapped crystal into the waiting cradle. The hum took a new tone. The whole machine drew in a breath and then released it. The rings steadied. Light smoothed from jitter to a clean, constant gleam. Thalen felt the subsonic thrum of it in his bones, and for the first time that night the world felt like stone under him instead of a bridge he’d been running across at full tilt. Around the balcony, faces slackened in something like prayer.</p>
-<p>“What now?” he asked. The night above had not completely forgiven them; through the open shutter he could still see a thin seam drawn across the sky where the rift had been, like a scar that did not know whether to fade.</p>
-<p>Lyrian’s gaze was on the lens and the way it cast the constellations down in precise, patient order, reasserting the heavens one measured beam at a time. “Now,” she said, “we find who is tampering with fate.”</p>
-<p>Kivra put her elbows on the rail beside Thalen and peered out toward the plaza where lanterns bobbed and the sweets vendors would already be arguing over who had seen the cracks first and who had bravely stood their ground behind stacks of sugar. The wind from the dome smelled like rain that had forgotten to fall. “Forehead Donut Lady,” she said gravely. “I’ve had my suspicions.”</p>
-<p>Brother Moss made the exhausted sound of a man who loved them very much and would never say so. “Of course you have.”</p>
-<p>Thalen closed his journal, the ink on the last line barely dry. The pattern had shifted. It always did. He felt the tug of it, the way his name had sounded when the Forge whispered and Lyrian had come looking for him. Fate fraying, threads drawing strange, a woman with sugar on her brow who was now, for reasons even Kivra might not understand, their prime suspect. He let the thought land and sit, then smiled down into the dark where the city murmured like a river.</p>
-<p>“Fine,” he said. “Let’s go buy a pastry and ask the right questions.”</p></div>
+<p>“Excellent.”</p>
+<p>They went at once. Lyrian led them along the plaza’s edge, where spilled drink made the stones tacky and lanternlight trembled on the fountain’s skin. Wardens worked to pen the crowd; the four of them slid through the confusion under the shelter of Lyrian’s authority, through an arch of carved constellations into the observatory’s courtyard. The tower of the Astral Forge rose out of it—bronze-ribbed, slate-skinned, arched windows showing slivers of orreries that ticked mechanically against the night. The great doors admitted them with a dull sigh, muting the roar of festival into a low, persistent thrum. Inside smelled of hot metal and old parchment, of oil and ozone. Astrolabes hung like gilded skeletons from the vaulted ceiling, slow-moving, their brass arms catching lamplight in slow sweeps.</p>
+<p>Down in the belly of the tower, all that celebration meant nothing. They took a spiral stair that wrapped the interior wall, torches guttering as though a tide had been running against them for hours. The stone underfoot was worn by generations of careful feet, and the air cooled with each step, taking on a clean hardness that sharpened the breath.</p>
+<p>Something metallic scraped below. They paused on a landing, and Speaker-00 cupped her hands to her mouth and called, “Hello?”</p>
+<p>“Why,” Thalen said dryly, “would you—”</p>
+<p>“Stealth is for cowards,” Brother Moss said. His humor was dry as old leaves. He touched his sternum with two fingers and murmured a prayer that felt more like a promise he made to the space between his ribs. “I sense regret approaching.”</p>
+<p>The antechamber’s brass door glowed faintly from within, the sigils along its face shifting like a patient eye. Lyrian’s key—cold metal, shaped like a star caught mid-fall—sat heavy in Speaker-00’s palm. She slid it into the lock with exaggerated delicacy and a flourish when it turned and the door eased.</p>
+<p>“I did it,” she announced, almost offended by how little resistance it took.</p>
+<p>Thalen stepped past her, deadpan. “It was a key.”</p>
+<p>“I did it,” Speaker-00 repeated, louder.</p>
+<p>Kivra bumped her with a hip as she went by. “Let her have this.”</p>
+<p>“Fine,” Thalen said, and pretended not to have the corner of his mouth threaten to move.</p>
+<p>The vault hall wore its danger openly. Shelves held objects wrapped and labeled in a careful, almost tender script; others sat naked on plinths with warning charms layered around them like cobwebs. One of them bled a slow coil of purple smoke from a crack in its surface, the strand pooling and then sifting toward the floor like bored incense. The air held a static feel, hairs on forearms lifting, breaths trying to become whispers of their own accord.</p>
+<p>Speaker-00, predictably, reached. “Baby,” she whispered to the smoke, which did not answer.</p>
+<p>“Stop touching things,” Thalen said, catching her wrist and drawing it back. The contact was brief. His hand was callused and warm, and the shock of being handled startled her into stillness.</p>
+<p>“Fine.”</p>
+<p>That’s when something metal rolled out from beneath a shelf, sprouting legs as it found them, a round body, a single lens burning in its face like a lit coal. It clicked once, focused, and charged.</p>
+<p>“Baby,” Speaker-00 said, but Kivra already had her hands up, fire spilling through her fingers. The sphere tucked in its legs and hurled its weight at her; it caught her in the ribs and knocked the air from her with a sound like a deflating bellows. She hissed through her teeth, one arm thrown around her middle, eyes watering.</p>
+<p>Brother Moss’s hand rose, and his flame fell with patient accuracy. The light took the sphere in the underside where gears showed. Its screech was all grinding metal and offended enchantment. Thalen’s arrow hit a fraction after, digging in and sticking, the shaft quivering as if its own balance were offended by such inelegant prey.</p>
+<p>Kivra drew heat into her palms and threw it back. This time the fire did not splash but bit, wind-driven, opening the casing like a mouth. Something there did not enjoy oxygen. The explosion lifted all three of them back a step; heat snatched at eyebrows and fine hairs. Thalen slapped a smoldering scrap off his sleeve. Kivra blinked, eyes watering more now, and winced as the bruise at her ribs announced itself.</p>
+<p>Speaker-00 flung her arms wide, laughing at the prickling skin on her cheeks. “Worth it?”</p>
+<p>“You say that too often,” Thalen said, flicking ash from his cuff.</p>
+<p>“And I mean it every time.”</p>
+<p>A rumble ran through the floor under their boots, the stone muttering a warning. They didn’t linger. The inner door waited at the far end, its face carved into a serene sable visage with eyes closed. As they approached, they opened: stars picked out in the irises blinked polite inquiry. “Password?” it asked in a voice like a bell dropped in wool.</p>
+<p>“No,” Speaker-00 said thoughtfully.</p>
+<p>“Incorrect,” the door said, amused, “but poetic.”</p>
+<p>The carved border around the face told a story: a hammer lifted beneath a spray of sparks, a forge mouth vomiting starfire, constellations smudged around the edges as though a careless artisan had thumbed at them to blur their hard lines. Thalen traced them with his gaze, memorizing. Old names whispered under his tongue without daring his breath. Speaker-00 bit her lip, cocked her head, and then said, “<a href="../../entities/characters/gorin.html" class="entity-link entity-character" data-entity-name="Gorin" data-entity-type="characters" data-entity-preview="Gorin is widely described as a meticulous, middle‑aged figure with a compact, steady build and the self‑possessed poise of someone accustomed to...">Gorin</a>.”</p>
+<p>The door smiled, soundless but understood, and it parted like lips.</p>
+<p>“I am collecting this one,” Speaker-00 said to Thalen, and held up her palm. He watched it for a moment as if it were a trap, decided the trap would be too obvious, and let her slap his hand. It turned out to be just a high-five.</p>
+<p>“This is growth,” Speaker-00 confided, winking at Kivra.</p>
+<p>“Don’t make it weird.”</p>
+<p>“Too late.”</p>
+<p>The crystal sat on a low pedestal, humming in sympathy with the hair on their arms. Blue light lived in it, neither holy nor profane, only purposeful. Speaker-00 stepped forward, fingers stretched, then hesitated, glanced at Thalen, at Kivra, at Brother Moss, who were all doing varying degrees of necessary brace. She touched. The jolt leapt up her arm and through her shoulders, snapping her jaw shut on a curse that ended as a laugh.</p>
+<p>“I regret nothing,” she said, shaking out her fingers. Sparks lingered between two rings.</p>
+<p>Brother Moss set his palm gently against her forearm, and the ache unwound. He smelled like clean earth after rain. Kivra tugged a square of linen from her sash and Speaker-00 wrapped the crystal with quick, reverent clumsiness, as if tucking a restless child to bed.</p>
+<p>“Thanks,” Speaker-00 said.</p>
+<p>“I am not,” Brother Moss muttered, and she grinned at the lie.</p>
+<p>The vault shuddered. That sleep-sick purple smoke uncoiled in a hurry, and the cracked object that had been bleeding it bulged. It broke along a seam and peeled like a fruit cut poorly, and what came out wore faces like clothing it took on and off between steps. It had too many corners where you only wanted curves and too many eyes where you wanted none, and it looked at them and then at the room and then at nothing, and all those choices seemed to hurt it.</p>
+<p>Kivra lifted her palm and flung heat: the bolt streaked a clean line, kissing a face and leaving less than it found. Thalen dragged breath down his throat and drew—his first shot went wide as the thing turned all its attention at once toward him, and thoughts that were not his crawled into his mind and tried to rearrange it. His vision swam at the edges; the world took on a grainy, too-vivid clarity that made him want to rub his eyes until they bled. The creature’s lash was not claws but idea, and it hurt in ways his body hadn’t trained for. He heard Speaker-00’s soft “oof” as if she’d taken the bruise for him.</p>
+<p>“Out,” Brother Moss said, and he flung his guiding light, but it skittered along the thing’s side like water on oiled glass, catching no purchase. His jaw set. He didn’t raise his voice when he missed; he simply chose differently and brought light down more humbly, a falling petal. It landed where arrogance failed.</p>
+<p>Speaker-00 stepped to the side, head cocked to listen to something only she heard. “The stars approve,” she whispered. “So do the dreams. Also the floor. Hi, floor.”</p>
+<p>Kivra’s next strike arced—not flame but a mean, quick lightning that snapped from her fingertip and sought the path of least resistance across the thing’s many faces. It convulsed and flickered and lost the one it had been wearing. Thalen steadied his hands and shot again. The arrow drove deep, and the wrongness that held the creature together failed with a sigh. Brother Moss’s falling light touched it once, and then it evaporated, like breath on glass, a ghost with the sense to leave.</p>
+<p>Speaker-00 dusted off her sleeves. “We are unstoppable.”</p>
+<p>“You almost died twice,” Brother Moss observed, which was generous; it had been at least that.</p>
+<p>“I said what I said!”</p>
+<p>The vault settled. The wrapped crystal in Speaker-00’s hands thrummed once more, the beat in it aligning with the tower’s bones. They did not speak much on the climb back up. Thalen listened to his breath and counted stairs, the stone cool under his palm; a slit window showed the lanterns still adrift, unbothered by what had crawled between their light. Kivra adjusted the knot of a sash to sit above the bruise blossoming at her ribs and kept her jaw tight each time the stair turned. Brother Moss walked last, making sure their shadows did not lag behind them. Speaker-00 murmured to the bundle she carried—flattery mostly, and promises it didn’t need from a mouth that liked the feel of promises anyway.</p>
+<p>Lyrian was waiting when they emerged, relief an exhale that smoothed her mouth without softening her eyes. The engine hall of the Astral Forge opened around them—cavernous, all impossible geometry and humming purpose. Veins of light crawled through it in patient pathways, brass ribs arcing like the skeleton of a starship, crystal conduits threading from floor to ceiling. Earlier, the glow had sputtered and jumped; now it hung hesitant, waiting.</p>
+<p>“Place it into the engine,” Lyrian said.</p>
+<p>“I do it!” Speaker-00 announced, and slid the crystal into the cradle Lyrian indicated. It settled like it had always known where it belonged. The engine’s shivering calmed. The light ran through its channels without snagging now, a river remembering its bed. Heat rose in a clean draft; the hairs on their arms lay flat.</p>
+<p>Silence fell inside the hall. Outside, through the slivered windows, the festival roared on, unaware and insistent.</p>
+<p>“What now?” Thalen asked. He would mark the star paths later and see what had shifted while no one was looking. For now, he wanted a direction.</p>
+<p>Lyrian’s mouth flattened into that sober line. “Now we find who is tampering with fate.”</p>
+<p>“Forehead Doughnut Lady!” Speaker-00 said, bright and certain, pointing into some corner of memory. There had been a woman earlier with a sugared ring perched absurdly at her brow; there was always someone in a crowd who wore comedy like armor. “The dreams agree.”</p>
+<p>“Of course they do,” Lyrian said, too tired to argue with dreams.</p>
+<p>The engine’s pulse steadied under them. The city sang, and the water in the fountain resumed its breath, completing the sigh Brother Moss had heard. Outside, the lanterns went on floating, patient as stars. Inside, the names the Forge had whispered hung between them like a thread not yet pulled.</p></div>
         </div>
         
-            <footer class="site-footer">
-                <p>Generated by <a href="https://github.com/joshuatheengineer/tapestry" target="_blank">Tapestry</a></p>
-            </footer>
         </main>
     </div>
-    
+    <script>
+// Tapestry Static Site Core
+(function() {
+    'use strict';
+
+    // Mobile menu toggle
+    window.toggleMenu = function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            sidebar.classList.toggle('open');
+        }
+    };
+
+    // Entity preview tooltip
+    let tooltip = null;
+    let tooltipTimeout = null;
+    let hideTimeout = null;
+
+    function createTooltip() {
+        if (tooltip) return tooltip;
+        tooltip = document.createElement('div');
+        tooltip.className = 'entity-tooltip';
+        document.body.appendChild(tooltip);
+        return tooltip;
+    }
+
+    function showTooltip(link, e) {
+        const name = link.dataset.entityName;
+        const type = link.dataset.entityType;
+        const preview = link.dataset.entityPreview;
+        const image = link.dataset.entityImage;
+
+        if (!name) return;
+
+        clearTimeout(hideTimeout);
+
+        tooltipTimeout = setTimeout(() => {
+            const tt = createTooltip();
+
+            let html = '';
+            if (image) {
+                html += `<img src="${image}" alt="${name}" class="entity-tooltip-image" onerror="this.style.display='none'">`;
+            }
+            html += `<div class="entity-tooltip-name">${name}</div>`;
+            if (type) {
+                const typeLabel = type.replace(/s$/, '');
+                html += `<div class="entity-tooltip-type">${typeLabel}</div>`;
+            }
+            if (preview) {
+                html += `<div class="entity-tooltip-description">${preview}</div>`;
+            }
+
+            tt.innerHTML = html;
+
+            // Position tooltip
+            const rect = link.getBoundingClientRect();
+
+            let left = rect.left + (rect.width / 2) - 140;
+            let top = rect.top - 10;
+
+            // Adjust for viewport edges
+            if (left < 10) left = 10;
+            if (left + 280 > window.innerWidth - 10) {
+                left = window.innerWidth - 290;
+            }
+
+            // Position above or below link
+            tt.style.left = left + 'px';
+            if (top - tt.offsetHeight < 10) {
+                tt.style.top = (rect.bottom + 10) + 'px';
+            } else {
+                tt.style.top = (top - tt.offsetHeight) + 'px';
+            }
+
+            tt.classList.add('visible');
+        }, 300);
+    }
+
+    function hideTooltip() {
+        clearTimeout(tooltipTimeout);
+        hideTimeout = setTimeout(() => {
+            if (tooltip) {
+                tooltip.classList.remove('visible');
+            }
+        }, 100);
+    }
+
+    // Attach tooltip listeners to entity links
+    document.addEventListener('mouseover', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link && link.dataset.entityName) {
+            showTooltip(link, e);
+        }
+    });
+
+    document.addEventListener('mouseout', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link) {
+            hideTooltip();
+        }
+    });
+})();
+</script>
 </body>
 </html>

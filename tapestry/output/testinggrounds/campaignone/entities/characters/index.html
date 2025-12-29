@@ -191,10 +191,23 @@ body {
     display: block;
 }
 
+.card-no-link {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.card-no-link:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: var(--bg-card);
+    border-color: var(--border);
+}
+
 .card-image {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    object-position: top;
     border-radius: 0.375rem;
     margin-bottom: 1rem;
 }
@@ -272,16 +285,52 @@ body {
     border-bottom-style: solid;
 }
 
-.entity-link.entity-character::before {
-    content: "👤 ";
+/* Entity Preview Tooltip */
+.entity-tooltip {
+    position: fixed;
+    max-width: 280px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 4px 16px var(--shadow);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
 }
 
-.entity-link.entity-location::before {
-    content: "📍 ";
+.entity-tooltip.visible {
+    opacity: 1;
 }
 
-.entity-link.entity-faction::before {
-    content: "⚔️ ";
+.entity-tooltip-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.entity-tooltip-type {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
 }
 
 /* Session Content */
@@ -513,28 +562,28 @@ body {
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <div class="site-container">
         <nav class="sidebar">
-            <a href="index.html" class="site-title">CampaignOne</a>
+            <a href="../../index.html" class="site-title">CampaignOne</a>
             
         <div class="nav-section">
             <div class="nav-section-title">Entities</div>
             <ul class="nav-list">
-                <li><a href="entities/characters/index.html" class="active">Characters</a></li>
-                <li><a href="entities/locations/index.html">Locations</a></li>
-                <li><a href="entities/factions/index.html">Factions</a></li>
+                <li><a href="../../entities/characters/index.html" class="active">Characters</a></li>
+                <li><a href="../../entities/locations/index.html">Locations</a></li>
+                <li><a href="../../entities/factions/index.html">Factions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Sessions</div>
             <ul class="nav-list">
-                <li><a href="sessions/index.html">All Sessions</a></li>
+                <li><a href="../../sessions/index.html">All Sessions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Inventory</div>
             <ul class="nav-list">
-                <li><a href="inventory/index.html">Campaign Inventory</a></li>
+                <li><a href="../../inventory/index.html">Campaign Inventory</a></li>
             </ul>
         </div>
         
@@ -544,77 +593,248 @@ body {
             
         <header class="page-header">
             <h1 class="page-title">Characters</h1>
-            <p class="page-subtitle">7 characters in the campaign</p>
+            <p class="page-subtitle">15 characters in the campaign</p>
         </header>
         <div class="card-grid">
-            <a href="lyrian-vost.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">Lyrian Vost</h3>
-                    
-                    <div class="card-meta">Sessions: 1-2</div>
+                <a href="lyrien-vaust.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Lyrien Vaust</h3>
+                        <p class="card-description">Lyrien Vaust carried the composed gravity of a lifelong scholar-commander. In late middle age with silver-shot dark hair swept back from a thoughtful </p>
+                        <div class="card-meta">Sessions: 0</div>
+                    </div>
+                </a>
+                
+                <a href="bronn-thale.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Bronn Thale</h3>
+                        <p class="card-description">Bronn Thale presents as a battle-weathered man in his late thirties to early forties, broad-shouldered and squared by years of drill. His skin is sun-</p>
+                        <div class="card-meta">Sessions: 0</div>
+                    </div>
+                </a>
+                
+                <a href="eris-vanthe.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Eris Vanthe</h3>
+                        <p class="card-description">Eris Vanthe was a woman in her mid-thirties with a lean, wiry build tempered by the strength of someone used to heat and weight. Soot smudged the pale</p>
+                        <div class="card-meta">Sessions: 0</div>
+                    </div>
+                </a>
+                
+                <a href="varkessa-holt.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Varkessa Holt</h3>
+                        <p class="card-description">Varkessa Holt stands tall and broad-shouldered, a soldier’s strength pared to efficiency. In their late thirties, they carry the weathered look of a v</p>
+                        <div class="card-meta">Sessions: 0</div>
+                    </div>
+                </a>
+                
+                <a href="thalen-reed.html" class="card-link">
+                    <div class="card">
+                        <img src="../../images/thalen-reed.character.png" alt="Thalen Reed" class="card-image">
+                        <h3 class="card-title">Thalen Reed</h3>
+                        <p class="card-description">Thalen Reed is a lean, weathered human man in his late twenties, all stringed muscle and patient stillness. Dark hair is tied back to keep clear of a </p>
+                        <div class="card-meta">Sessions: 0-2</div>
+                    </div>
+                </a>
+                
+                <a href="kivra-embercoil.html" class="card-link">
+                    <div class="card">
+                        <img src="../../images/kivra-embercoil.character.png" alt="Kivra Embercoil" class="card-image">
+                        <h3 class="card-title">Kivra Embercoil</h3>
+                        <p class="card-description">Kivra Embercoil is a young fire genasi woman with a wiry, quick-moving build and ember-orange hair that flickers like banked coals. Constellations of </p>
+                        <div class="card-meta">Sessions: 0-2</div>
+                    </div>
+                </a>
+                
+                <a href="brother-moss.html" class="card-link">
+                    <div class="card">
+                        <img src="../../images/brother-moss.character.png" alt="Brother Moss" class="card-image">
+                        <h3 class="card-title">Brother Moss</h3>
+                        <p class="card-description">Brother Moss is a tall firbolg male with moss‑green fur and gentle, observant eyes. Their broad, soft build carries the quiet strength of old forests,</p>
+                        <div class="card-meta">Sessions: 0-2</div>
+                    </div>
+                </a>
+                
+                <a href="solaryn.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Solaryn</h3>
+                        <p class="card-description">Solaryn presents as an ageless, male figure whose presence bends easily past mortal measures. Tall and lean with a sun-sculpted build, they carry the </p>
+                        <div class="card-meta">Sessions: 0</div>
+                    </div>
+                </a>
+                
+                <a href="nymera.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Nymera</h3>
+                        <p class="card-description">Nymera presented as a woman of ageless, celestial poise, yet preferred they/them forms of address. Their build was tall and slender, movements unhurri</p>
+                        <div class="card-meta">Sessions: 0</div>
+                    </div>
+                </a>
+                
+                <a href="korrun.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Korrun</h3>
+                        <p class="card-description">Korrun, known as the Iron Father, is most often depicted in iconography and manifested visions as an ageless, broad-shouldered figure with the weight </p>
+                        <div class="card-meta">Sessions: 0</div>
+                    </div>
+                </a>
+                
+                <a href="the-nameless-one.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">The Nameless One</h3>
+                        <p class="card-description">The Nameless One appears as an ageless, androgynous figure whose features never quite settle, as if memory itself struggles to hold them in focus. The</p>
+                        <div class="card-meta">Sessions: 0</div>
+                    </div>
+                </a>
+                
+                <a href="lyrian-vost.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Lyrian Vost</h3>
+                        <p class="card-description">Lyrian Vost is a woman in her middle years with a tall, spare build and a habit of holding herself ramrod-straight, as if bracing against an unseen cu</p>
+                        <div class="card-meta">Sessions: 1-2</div>
+                    </div>
+                </a>
+                
+                <a href="gorin.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Gorin</h3>
+                        <p class="card-description">Gorin is widely described as a meticulous, middle‑aged figure with a compact, steady build and the self‑possessed poise of someone accustomed to locke</p>
+                        <div class="card-meta">Sessions: 1</div>
+                    </div>
+                </a>
+                
+                <a href="veyra-vost.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Veyra Vost</h3>
+                        <p class="card-description">Veyra Vost is a young adult woman with a lean, controlled carriage and silver eyes that gleamed like polished wire. A thread‑spool–shaped scar marked </p>
+                        <div class="card-meta">Sessions: 2</div>
+                    </div>
+                </a>
+                
+                <a href="master-helvran.html" class="card-link">
+                    <div class="card">
+                        
+                        <h3 class="card-title">Master Helvran</h3>
+                        <p class="card-description">Master Helvran presented as a late‑middle‑aged, sparely built scholar whose posture carried the stoop of long study. Their ash-brown hair, streaked wi</p>
+                        <div class="card-meta">Sessions: 2</div>
+                    </div>
+                </a>
                 </div>
-            </a>
-            
-            <a href="brother-moss.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">Brother Moss</h3>
-                    
-                    <div class="card-meta">Sessions: 1-2</div>
-                </div>
-            </a>
-            
-            <a href="gorin.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">Gorin</h3>
-                    
-                    <div class="card-meta">Sessions: 1</div>
-                </div>
-            </a>
-            
-            <a href="thalen-reed.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">Thalen Reed</h3>
-                    
-                    <div class="card-meta">Sessions: 1-2</div>
-                </div>
-            </a>
-            
-            <a href="kivra-embercoil.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">Kivra Embercoil</h3>
-                    
-                    <div class="card-meta">Sessions: 1-2</div>
-                </div>
-            </a>
-            
-            <a href="veyra-vost.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">Veyra Vost</h3>
-                    
-                    <div class="card-meta">Sessions: 2</div>
-                </div>
-            </a>
-            
-            <a href="master-helvran.html" class="card-link">
-                <div class="card">
-                    
-                    <h3 class="card-title">Master Helvran</h3>
-                    
-                    <div class="card-meta">Sessions: 2</div>
-                </div>
-            </a>
-            </div>
-            <footer class="site-footer">
-                <p>Generated by <a href="https://github.com/joshuatheengineer/tapestry" target="_blank">Tapestry</a></p>
-            </footer>
         </main>
     </div>
-    
+    <script>
+// Tapestry Static Site Core
+(function() {
+    'use strict';
+
+    // Mobile menu toggle
+    window.toggleMenu = function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            sidebar.classList.toggle('open');
+        }
+    };
+
+    // Entity preview tooltip
+    let tooltip = null;
+    let tooltipTimeout = null;
+    let hideTimeout = null;
+
+    function createTooltip() {
+        if (tooltip) return tooltip;
+        tooltip = document.createElement('div');
+        tooltip.className = 'entity-tooltip';
+        document.body.appendChild(tooltip);
+        return tooltip;
+    }
+
+    function showTooltip(link, e) {
+        const name = link.dataset.entityName;
+        const type = link.dataset.entityType;
+        const preview = link.dataset.entityPreview;
+        const image = link.dataset.entityImage;
+
+        if (!name) return;
+
+        clearTimeout(hideTimeout);
+
+        tooltipTimeout = setTimeout(() => {
+            const tt = createTooltip();
+
+            let html = '';
+            if (image) {
+                html += `<img src="${image}" alt="${name}" class="entity-tooltip-image" onerror="this.style.display='none'">`;
+            }
+            html += `<div class="entity-tooltip-name">${name}</div>`;
+            if (type) {
+                const typeLabel = type.replace(/s$/, '');
+                html += `<div class="entity-tooltip-type">${typeLabel}</div>`;
+            }
+            if (preview) {
+                html += `<div class="entity-tooltip-description">${preview}</div>`;
+            }
+
+            tt.innerHTML = html;
+
+            // Position tooltip
+            const rect = link.getBoundingClientRect();
+
+            let left = rect.left + (rect.width / 2) - 140;
+            let top = rect.top - 10;
+
+            // Adjust for viewport edges
+            if (left < 10) left = 10;
+            if (left + 280 > window.innerWidth - 10) {
+                left = window.innerWidth - 290;
+            }
+
+            // Position above or below link
+            tt.style.left = left + 'px';
+            if (top - tt.offsetHeight < 10) {
+                tt.style.top = (rect.bottom + 10) + 'px';
+            } else {
+                tt.style.top = (top - tt.offsetHeight) + 'px';
+            }
+
+            tt.classList.add('visible');
+        }, 300);
+    }
+
+    function hideTooltip() {
+        clearTimeout(tooltipTimeout);
+        hideTimeout = setTimeout(() => {
+            if (tooltip) {
+                tooltip.classList.remove('visible');
+            }
+        }, 100);
+    }
+
+    // Attach tooltip listeners to entity links
+    document.addEventListener('mouseover', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link && link.dataset.entityName) {
+            showTooltip(link, e);
+        }
+    });
+
+    document.addEventListener('mouseout', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link) {
+            hideTooltip();
+        }
+    });
+})();
+</script>
 </body>
 </html>

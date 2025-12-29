@@ -191,10 +191,23 @@ body {
     display: block;
 }
 
+.card-no-link {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.card-no-link:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: var(--bg-card);
+    border-color: var(--border);
+}
+
 .card-image {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    object-position: top;
     border-radius: 0.375rem;
     margin-bottom: 1rem;
 }
@@ -272,16 +285,52 @@ body {
     border-bottom-style: solid;
 }
 
-.entity-link.entity-character::before {
-    content: "👤 ";
+/* Entity Preview Tooltip */
+.entity-tooltip {
+    position: fixed;
+    max-width: 280px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 4px 16px var(--shadow);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
 }
 
-.entity-link.entity-location::before {
-    content: "📍 ";
+.entity-tooltip.visible {
+    opacity: 1;
 }
 
-.entity-link.entity-faction::before {
-    content: "⚔️ ";
+.entity-tooltip-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.entity-tooltip-type {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
 }
 
 /* Session Content */
@@ -513,28 +562,28 @@ body {
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <div class="site-container">
         <nav class="sidebar">
-            <a href="index.html" class="site-title">CampaignOne</a>
+            <a href="../../index.html" class="site-title">CampaignOne</a>
             
         <div class="nav-section">
             <div class="nav-section-title">Entities</div>
             <ul class="nav-list">
-                <li><a href="entities/characters/index.html">Characters</a></li>
-                <li><a href="entities/locations/index.html" class="active">Locations</a></li>
-                <li><a href="entities/factions/index.html">Factions</a></li>
+                <li><a href="../../entities/characters/index.html">Characters</a></li>
+                <li><a href="../../entities/locations/index.html" class="active">Locations</a></li>
+                <li><a href="../../entities/factions/index.html">Factions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Sessions</div>
             <ul class="nav-list">
-                <li><a href="sessions/index.html">All Sessions</a></li>
+                <li><a href="../../sessions/index.html">All Sessions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Inventory</div>
             <ul class="nav-list">
-                <li><a href="inventory/index.html">Campaign Inventory</a></li>
+                <li><a href="../../inventory/index.html">Campaign Inventory</a></li>
             </ul>
         </div>
         
@@ -550,17 +599,137 @@ body {
             <div class="entity-content">
                 
         <section class="entity-section">
+            <h2 class="entity-section-title">Description</h2>
+            <p>The Upper District of <a href="astor-falls.html" class="entity-link entity-location" data-entity-name="Astor Falls" data-entity-type="locations" data-entity-preview="Asterfall was a gleaming capital terraced around the rim of a starfall crater, its districts stitched together by airy skybridges and constellations..." data-entity-image="../../images/astor-falls.location.png">Astor Falls</a> sat on high stone terraces, its broad plazas tied together by cut-stone steps and waist-high railings that looked over the lower quarters. On the night of the Starfall Convergence, the district wore its festival finery: drifting lanterns glided between balconies like slow stars, banners hung in clean lines along the railings, and the air felt charged—as if the stone itself held its breath. The stonework underfoot was smooth and pale, catching the soft light and throwing it back in trembling reflections.</p>
+<p>Crowds packed the plazas, their cheers rising and falling in waves that echoed against the masonry. Music and shouted greetings bounced through the open spaces, and every vantage point along the railings was claimed by onlookers craning for a better view of the night sky and the drifting lights above.</p>
+        </section>
+        
+
+        <section class="entity-section">
+            <h2 class="entity-section-title">Significance</h2>
+            <p>This district served as the campaign’s opening stage and the site of the first rift incursion—where the party was drawn together, <a href="../../entities/characters/lyrian-vost.html" class="entity-link entity-character" data-entity-name="Lyrian Vost" data-entity-type="characters" data-entity-preview="Lyrian Vost is a woman in her middle years with a tall, spare build and a habit of holding herself ramrod-straight, as if bracing against an unseen...">Lyrian Vost</a> warned of <a href="the-astral-forge.html" class="entity-link entity-location" data-entity-name="The Astral Forge" data-entity-type="locations" data-entity-preview="The Astral Forge is a looming arcane facility whose heart is a thunderous engine chamber, its brasswork conduits and suspended rings shedding a cold,...">the Astral Forge</a>’s instability, and the silver pulse that tore reality announced the wider threat beyond <a href="astor-falls.html" class="entity-link entity-location" data-entity-name="Astor Falls" data-entity-type="locations" data-entity-preview="Asterfall was a gleaming capital terraced around the rim of a starfall crater, its districts stitched together by airy skybridges and constellations..." data-entity-image="../../images/astor-falls.location.png">Astor Falls</a>.</p>
+        </section>
+        
+
+        <section class="entity-section">
+            <h2 class="entity-section-title">Events</h2>
+            <p>The story opened amid the Starfall Convergence, with the party scattered across the Upper District’s main plaza. Lanterns drifted overhead and the crowd’s excitement filled the terraces. In that celebratory chaos, <a href="../../entities/characters/lyrian-vost.html" class="entity-link entity-character" data-entity-name="Lyrian Vost" data-entity-type="characters" data-entity-preview="Lyrian Vost is a woman in her middle years with a tall, spare build and a habit of holding herself ramrod-straight, as if bracing against an unseen...">Lyrian Vost</a> moved among the revelers to gather the group, delivering a terse warning that <a href="the-astral-forge.html" class="entity-link entity-location" data-entity-name="The Astral Forge" data-entity-type="locations" data-entity-preview="The Astral Forge is a looming arcane facility whose heart is a thunderous engine chamber, its brasswork conduits and suspended rings shedding a cold,...">the Astral Forge</a> was unstable and that something more than pageantry might mark the night's sky.</p>
+<p>Moments later, a silver pulse rippled through the plaza, bright enough to blanch the banners and turn faces ghost-pale. A rift split the air near the railings, its edges hissing against the stone as three insect-like creatures forced their way through. The cheering fractured into panic; people stumbled back from the railings while the party closed ranks and met the charge amid scattered lantern-light. The fight was swift and brutal across the smooth flagstones, and when it ended the creatures lay broken and the rift stuttered shut.</p>
+<p>In the aftermath, the Upper District no longer felt merely festive—it felt like a threshold. The echo of Lyrian Vost’s warning and the silver afterimage of the pulse lingered over the plaza, marking the terraces as the first place where the boundary between <a href="astor-falls.html" class="entity-link entity-location" data-entity-name="Astor Falls" data-entity-type="locations" data-entity-preview="Asterfall was a gleaming capital terraced around the rim of a starfall crater, its districts stitched together by airy skybridges and constellations..." data-entity-image="../../images/astor-falls.location.png">Astor Falls</a> and what lay beyond had been tested.</p>
+        </section>
+        
+
+        <section class="entity-section">
             <h2 class="entity-section-title">Appearances</h2>
             <p>Featured in sessions: 1</p>
         </section>
         
             </div>
             
-            <footer class="site-footer">
-                <p>Generated by <a href="https://github.com/joshuatheengineer/tapestry" target="_blank">Tapestry</a></p>
-            </footer>
         </main>
     </div>
-    
+    <script>
+// Tapestry Static Site Core
+(function() {
+    'use strict';
+
+    // Mobile menu toggle
+    window.toggleMenu = function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            sidebar.classList.toggle('open');
+        }
+    };
+
+    // Entity preview tooltip
+    let tooltip = null;
+    let tooltipTimeout = null;
+    let hideTimeout = null;
+
+    function createTooltip() {
+        if (tooltip) return tooltip;
+        tooltip = document.createElement('div');
+        tooltip.className = 'entity-tooltip';
+        document.body.appendChild(tooltip);
+        return tooltip;
+    }
+
+    function showTooltip(link, e) {
+        const name = link.dataset.entityName;
+        const type = link.dataset.entityType;
+        const preview = link.dataset.entityPreview;
+        const image = link.dataset.entityImage;
+
+        if (!name) return;
+
+        clearTimeout(hideTimeout);
+
+        tooltipTimeout = setTimeout(() => {
+            const tt = createTooltip();
+
+            let html = '';
+            if (image) {
+                html += `<img src="${image}" alt="${name}" class="entity-tooltip-image" onerror="this.style.display='none'">`;
+            }
+            html += `<div class="entity-tooltip-name">${name}</div>`;
+            if (type) {
+                const typeLabel = type.replace(/s$/, '');
+                html += `<div class="entity-tooltip-type">${typeLabel}</div>`;
+            }
+            if (preview) {
+                html += `<div class="entity-tooltip-description">${preview}</div>`;
+            }
+
+            tt.innerHTML = html;
+
+            // Position tooltip
+            const rect = link.getBoundingClientRect();
+
+            let left = rect.left + (rect.width / 2) - 140;
+            let top = rect.top - 10;
+
+            // Adjust for viewport edges
+            if (left < 10) left = 10;
+            if (left + 280 > window.innerWidth - 10) {
+                left = window.innerWidth - 290;
+            }
+
+            // Position above or below link
+            tt.style.left = left + 'px';
+            if (top - tt.offsetHeight < 10) {
+                tt.style.top = (rect.bottom + 10) + 'px';
+            } else {
+                tt.style.top = (top - tt.offsetHeight) + 'px';
+            }
+
+            tt.classList.add('visible');
+        }, 300);
+    }
+
+    function hideTooltip() {
+        clearTimeout(tooltipTimeout);
+        hideTimeout = setTimeout(() => {
+            if (tooltip) {
+                tooltip.classList.remove('visible');
+            }
+        }, 100);
+    }
+
+    // Attach tooltip listeners to entity links
+    document.addEventListener('mouseover', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link && link.dataset.entityName) {
+            showTooltip(link, e);
+        }
+    });
+
+    document.addEventListener('mouseout', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link) {
+            hideTooltip();
+        }
+    });
+})();
+</script>
 </body>
 </html>

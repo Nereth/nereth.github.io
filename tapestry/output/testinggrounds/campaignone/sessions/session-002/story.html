@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- tapestry_generated -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 002 Story - CampaignOne</title>
+    <style>
+/* Tapestry Static Site - Dark Theme */
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-card: #1f2937;
+    --bg-card-hover: #374151;
+    --text-primary: #e5e7eb;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    --accent: #e94560;
+    --accent-hover: #ff6b6b;
+    --link: #60a5fa;
+    --link-hover: #93c5fd;
+    --border: #374151;
+    --border-light: #4b5563;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Layout */
+.site-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border);
+    padding: 1.5rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 2rem;
+    max-width: 1200px;
+}
+
+/* Navigation */
+.site-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.site-title:hover {
+    color: var(--accent-hover);
+}
+
+.nav-section {
+    margin-bottom: 1.5rem;
+}
+
+.nav-section-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.nav-list {
+    list-style: none;
+}
+
+.nav-list a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 0.375rem;
+    transition: all 0.15s ease;
+}
+
+.nav-list a:hover {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}
+
+.nav-list a.active {
+    background-color: var(--accent);
+    color: white;
+}
+
+/* Content */
+.page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.breadcrumb a {
+    color: var(--link);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    color: var(--text-muted);
+}
+
+/* Cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    transition: all 0.15s ease;
+}
+
+.card:hover {
+    background-color: var(--bg-card-hover);
+    border-color: var(--border-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card-no-link {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.card-no-link:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: var(--bg-card);
+    border-color: var(--border);
+}
+
+.card-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.card-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+}
+
+/* Entity Profile */
+.entity-profile {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.entity-image-container {
+    position: sticky;
+    top: 2rem;
+}
+
+.entity-image {
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.entity-content {
+    min-width: 0;
+}
+
+.entity-section {
+    margin-bottom: 2rem;
+}
+
+.entity-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.entity-section p {
+    margin-bottom: 1rem;
+}
+
+/* Entity Links */
+.entity-link {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--link);
+}
+
+.entity-link:hover {
+    color: var(--link-hover);
+    border-bottom-style: solid;
+}
+
+/* Entity Preview Tooltip */
+.entity-tooltip {
+    position: fixed;
+    max-width: 280px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 4px 16px var(--shadow);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.entity-tooltip.visible {
+    opacity: 1;
+}
+
+.entity-tooltip-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.entity-tooltip-type {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* Session Content */
+.session-content {
+    max-width: 800px;
+}
+
+.session-nav {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.session-nav a {
+    padding: 0.5rem 1rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.15s ease;
+}
+
+.session-nav a:hover {
+    background-color: var(--bg-card-hover);
+    color: var(--text-primary);
+}
+
+.session-nav a.active {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.story-text {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+}
+
+.story-text p {
+    margin-bottom: 1.25rem;
+}
+
+/* Tables */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.data-table th,
+.data-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table th {
+    background-color: var(--bg-secondary);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.data-table tr:hover td {
+    background-color: var(--bg-card);
+}
+
+/* Search */
+.search-container {
+    margin-bottom: 1.5rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.2);
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-results {
+    margin-top: 1rem;
+}
+
+.search-result-item {
+    padding: 1rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+.search-result-title {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.search-result-type {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* Footer */
+.site-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.site-footer a {
+    color: var(--link);
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .entity-profile {
+        grid-template-columns: 1fr;
+    }
+
+    .entity-image-container {
+        position: static;
+        max-width: 400px;
+        margin: 0 auto 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: -260px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1001;
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        padding: 0.75rem;
+        border-radius: 0.375rem;
+        cursor: pointer;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-muted { color: var(--text-muted); }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+</style>
+</head>
+<body>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="site-container">
+        <nav class="sidebar">
+            <a href="../../index.html" class="site-title">CampaignOne</a>
+            
+        <div class="nav-section">
+            <div class="nav-section-title">Entities</div>
+            <ul class="nav-list">
+                <li><a href="../../entities/characters/index.html">Characters</a></li>
+                <li><a href="../../entities/locations/index.html">Locations</a></li>
+                <li><a href="../../entities/factions/index.html">Factions</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-section">
+            <div class="nav-section-title">Sessions</div>
+            <ul class="nav-list">
+                <li><a href="../../sessions/index.html" class="active">All Sessions</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-section">
+            <div class="nav-section-title">Inventory</div>
+            <ul class="nav-list">
+                <li><a href="../../inventory/index.html">Campaign Inventory</a></li>
+            </ul>
+        </div>
+        
+        </nav>
+        <main class="main-content">
+            <nav class="breadcrumb"><a href="../../index.html">Home</a><span class="breadcrumb-separator">›</span><a href="../index.html">Sessions</a><span class="breadcrumb-separator">›</span><span>Session 002</span></nav>
+            
+        
+        <header class="page-header">
+            <h1 class="page-title">Session 002</h1>
+            <p class="page-subtitle">Story</p>
+        </header>
+        
+        <nav class="session-nav"><a href="summary.html">Summary</a><a href="story.html" class="active">Story</a><a href="inventory.html">Inventory</a></nav>
+        <div class="session-content">
+            <div class="story-text"><p>A Heartbeat Without Rhythm</p>
+<p>The engine sang to itself like a drowsing leviathan, all brass ribs and hot breath, the focusing crystal in its cage pulsing with a slow, vascular light. Astral wind stroked the observatory’s upper platform, teasing at prayer flags and at the hem of <a href="../../entities/characters/lyrian-vost.html" class="entity-link entity-character" data-entity-name="Lyrian Vost" data-entity-type="characters" data-entity-preview="Lyrian Vost is a woman in her middle years with a tall, spare build and a habit of holding herself ramrod-straight, as if bracing against an unseen...">Lyrian Vost</a>’s pale robes. The high stone cradle of <a href="../../entities/locations/astral-observatory.html" class="entity-link entity-location" data-entity-name="Astral Observatory" data-entity-type="locations" data-entity-preview="The Astral Observatory in Asterfall was a renowned dome of stone and brass, veined with runic inlays that glimmered faintly in starlight. Within,...">the Astral Observatory</a> was still warm from the day, smelling faintly of oil and old parchment, of ozone bled from the crystal’s song. Above <a href="../../entities/locations/astor-falls.html" class="entity-link entity-location" data-entity-name="Astor Falls" data-entity-type="locations" data-entity-preview="Asterfall was a gleaming capital terraced around the rim of a starfall crater, its districts stitched together by airy skybridges and constellations..." data-entity-image="../../images/astor-falls.location.png">Astor Falls</a>, the sky had acquired a wound—it ran hair-fine across the firmament, a pale slash that snared the eye no matter where one looked, as if someone had dragged a razor through the heavens and then thought better of finishing.</p>
+<p><a href="../../entities/characters/kivra-embercoil.html" class="entity-link entity-character" data-entity-name="Kivra Embercoil" data-entity-type="characters" data-entity-preview="Kivra Embercoil is a young fire genasi woman with a wiry, quick-moving build and ember-orange hair that flickers like banked coals. Constellations of..." data-entity-image="../../images/kivra-embercoil.character.png">Kivra Embercoil</a> squinted up, smudged knuckles raised as if she might poke a bruise in the world. “If I could just—”</p>
+<p>“Don’t,” Lyrian said without turning. He was always precise like that, stopping the fire before it leapt.</p>
+<p><a href="../../entities/characters/thalen-reed.html" class="entity-link entity-character" data-entity-name="Thalen Reed" data-entity-type="characters" data-entity-preview="Thalen Reed is a lean, weathered human man in his late twenties, all stringed muscle and patient stillness. Dark hair is tied back to keep clear of a..." data-entity-image="../../images/thalen-reed.character.png">Thalen Reed</a> already had his journal open. Ink whispered, neat strokes steady even as the wind worried the pages and the crack in the sky pressed at his thoughts like an unfinished line. He had always trusted patterns to behave. Today they did not. “The fracture widened since we came up,” he murmured.</p>
+<p><a href="../../entities/characters/brother-moss.html" class="entity-link entity-character" data-entity-name="Brother Moss" data-entity-type="characters" data-entity-preview="Brother Moss is a tall firbolg male with moss‑green fur and gentle, observant eyes. Their broad, soft build carries the quiet strength of old..." data-entity-image="../../images/brother-moss.character.png">Brother Moss</a>, all roughspun and river smell, watched the water far below the cliff—the whole broad sheet of Astor Falls shivered in a way water should not. “The water is uneasy again.”</p>
+<p>“Stop saying that,” Kivra said. “What does sky-uneasy sound like?”</p>
+<p>“Like a scream that forgot how to start,” he replied after a breath, solemn as prayer.</p>
+<p>“Stop doing that,” Kivra muttered. She said it as a joke. It made the terror more manageable, as if levity could be rope.</p>
+<p>Lyrian stepped toward the edge, fingers sketching precise shapes in the air. The engine’s hum steadied under his hand. Constellations bloomed between them: a lattice of star-bright nodes threaded together until a miniature Astor Falls hovered above the platform. One point burned red.</p>
+<p>“The Forge is stable for now,” Lyrian said, voice level and only a little frayed at the edges. “But the Convergence keeps accelerating. Someone’s pulling at fate’s threads from inside the city.”</p>
+<p>“It’s Lyrian Vost,” Kivra announced, because her dreams had been crowded lately with a figure in a bright robe, and because needling him kept him ferociously human. “I’m telling you, the dreams—”</p>
+<p>“No,” he said too quickly. “Probably not. Hopefully not. Please stop saying that.”</p>
+<p>She grinned despite the sky’s hurt. “So what’s the plan?”</p>
+<p>Lyrian flicked a wrist and the red point in the illusion surged. “<a href="../../entities/locations/loomspire-district.html" class="entity-link entity-location" data-entity-name="Loomspire District" data-entity-type="locations" data-entity-preview="The Loomspire District clustered around a needlelike tower that gave it its name, a thicket of narrow brick mills and timbered workshops stitched...">The Loomspire District</a>. The <a href="../../entities/factions/the-weavers-guild.html" class="entity-link entity-faction" data-entity-name="The Weavers&#39; Guild" data-entity-type="factions" data-entity-preview="The Weavers’ Guild, also known simply as the Weavers&#39; Guild, is the custodial order that tends the city’s fate-threads and maintains the stabilizing...">Weavers’ Guild</a>. If someone wanted to tamper with destiny, that’s where they’d go.”</p>
+<p>“So we break in.”</p>
+<p>He didn’t even sigh. “Yes, Kivra.”</p>
+<p>“I love this job,” she said, and only afterward realized she meant it.</p>
+<p>They took the spiral stairs three at a time, their footfalls ringing on the iron treads. The descent spun them back into the world: the smell of frying oil and wet stone, the clatter of hooves gone uncertain on cobbles, the muffled thunder of the falls like a god with a headache. The streets of Astor Falls had slipped their usual symmetry. Lanterns floated half a hand from their hooks, spinning lazy circles of light. Cobblestones puckered in ripples when carts rolled over them. In the plaza a streetlamp stretched itself like taffy and then, embarrassed, snapped back into being a streetlamp. People ran in terrible straight lines, clutching children and parcels, shouting names as if possession depended on insisting it. Somewhere a bell tolled and went flat midway through, staggering into a different note.</p>
+<p>A vendor had overturned his cart and wedged himself beneath it. Kivra pried up the corner, ignoring his frightened squeak, and liberated a sugar-dusted twist of fried dough still warm from oil. Then, because Thalen looked like he might improvise a lecture about theft in a crisis, she took a second, jammed it between her teeth, and tossed a handful of coins into a kettle for penance. The vendor peered at the coins as if they might float away.</p>
+<p>“Do you notice anything…?” Thalen began.</p>
+<p>“Unusual? Darling, the world is a fishbowl someone shook.”</p>
+<p>“In the crowd,” he said, patient. His pen scratched. He scanned without seeming to, the bow at his shoulder the only quiet thing on a street full of noise. His gaze snagged on a figure cutting against the flow—a cloak that refused the panic, moving with purpose, a head turning to show a face that blurred at the edges like heat over stone. It looked the way the thing in the vault had looked, as if indecision had been given skin.</p>
+<p>“We’ve got company,” he said. “Or a lead. Or both.”</p>
+<p>Kivra’s mouth was full of sugar and spice. She didn’t waste words. She ran.</p>
+<p>The figure slipped into a side alley that did not want to be a side alley. Perspective kinked. Brick walls flexed. The alley stretched itself into a long, impossible corridor, then snapped short, then stretched again, as if the city couldn’t remember what that space should be. The distant thread of the river bent in her ears. The figure flickered closer, farther, closer—she hated it when reality got clever.</p>
+<p>Kivra flung a palm forward and loosed a bolt of flame for clarity’s sake. Fire spat wild in the warping air, slapped a wall, and did something that was not quite burning. A poster peeled away, shivered, and collapsed into a very small chicken with sullen eyes. It launched itself at Kivra’s wrist and pecked hard enough to sting.</p>
+<p>“I’m keeping it,” she announced, pinching it gently around the middle and tucking it under her arm like a book. It wriggled and hissed, and a bead of blood welled on her knuckle. Worth it, she thought. Evidence.</p>
+<p>They pursued through knots of lanes that kinked and smoothed under their feet, past laundry whose embroidered hems crawled of their own accord and past a shrine where candles burned blue and sideways. By the time the alleys released them from their elastic geometry, the buildings had changed. Loomspires rose around them, stone and glass braided into arch on arch, air bridged by shimmering spans that caught the light as if the sun itself had been drawn into thread. The wind here smelled faintly of lye and dye, of dust shaken from bolts of cloth. Banners hung in patient ranks, their embroidered patterns moving to breezes that did not touch the surrounding air.</p>
+<p><a href="../../entities/locations/the-loomspire.html" class="entity-link entity-location" data-entity-name="The Loomspire" data-entity-type="locations" data-entity-preview="The Loomspire was a soaring tower of interwoven stone arches laced together by shimmering thread-bridges that spanned the voids between buttresses...">The Loomspire</a>, the greatest of them, towered at the district’s heart. It looked grown rather than made, the bones of the city knitted together into something tall and impossible.</p>
+<p>“The threads are wrong,” Brother Moss said softly.</p>
+<p>“Define wrong,” Kivra said, because she had her own catalog of wrong and wanted to see if they matched.</p>
+<p>“Like a heartbeat that forgot its rhythm.”</p>
+<p>She pinched the bridge of her nose. “Stop doing that.”</p>
+<p>The great doors glowed with sigils, a web of luminous runes wound tight as a cocoon. Lyrian stepped forward, studying them as if reading the years in tree rings. “These wards stabilize the weave when it frays. Someone inverted the anchor points. It’s repelling stability and inviting…this.” He gestured, and a lamppost on the far street briefly imagined itself a ribbon.</p>
+<p>“So we break in,” Kivra said.</p>
+<p>“Yes, Kivra.”</p>
+<p>She put a hand out because sometimes you had to ask the spell to move. The world jabbed a needle into her marrow. Pain sang in her skull in a tight, shrill note. She hissed and jerked back, eyes watering.</p>
+<p>“Don’t touch the inverted fate-sigils,” Thalen murmured, and only after did he add, “Please.” He traced lines in the air with an academic’s care, reading the design as if it were a theorem with a cruel punchline.</p>
+<p>Lyrian’s lips moved in a series of precise negations, untying knots that had been tied with malice. Light across the doors sagged, loosened, and came apart in long silk strands that evaporated as they fell. The hinges whispered as the doors gave.</p>
+<p>Inside, the Loomspire was a cathedral to every thread ever cut or tied. Lines of light hung from roof to floor like rain arrested in the act of falling, each vibrating to some secret music. When Kivra tilted her head just so, she heard it—not words exactly, but warnings, as if a thousand voices were trying to remember all the mistakes at once. Dust hung in the air like a second hush. Some threads had snapped outright; others snarled into ugly kinks. A few had been tied into lopsided knots that looked, to Kivra’s horror, disturbingly like her handwriting.</p>
+<p>“I do not write in knots,” she said aloud.</p>
+<p>You absolutely do, said something that might have been her conscience. Or Lyrian. It was hard to tell whose voice one’s conscience stole.</p>
+<p>Brother Moss drifted to a stand of strands and closed his eyes like a parishioner pressing his forehead to a temple pillar. “They are all…shouting under their breath.”</p>
+<p>Kivra brushed a thread with the back of her fingers. She meant to be gentle. It wasn’t enough. The strand vibrated in alarm. A ripple startled the entire room into motion. The hum sharpened. Patterns twisted.</p>
+<p>Someone stepped out from between the threads as if she’d been standing there all along, wearing the room like a cloak. The hood threw her face into shade, and what showed did not hold still. She raised a hand. Threads snapped in neat, surgical cuts. Three figures gathered themselves from the wreckage—guardians with bodies like braided twine and faces that rearranged their features from heartbeat to heartbeat, masks too fluid to belong to anyone.</p>
+<p>“You should not have come,” the cloaked figure said, voice steady and wrong. Her presence made a hollow in the air. Kivra felt the chicken under her arm go rigid.</p>
+<p>“We never should,” Kivra said. “Yet here we are.”</p>
+<p>The guardians stepped in the same moment. Kivra dropped her fried dough. It bounced once and rolled, scattering sugar like snow. “It’s tradition,” she told no one at all.</p>
+<p>She flung her will as she would a stone and it broke across the nearest guardian like lightning, burning bright runnels through its woven limbs. The creature staggered and then clung back together, threads straining with a sound like teeth ground shut. Thalen’s bow sang a heartbeat later. His arrow flew perfectly through the guard of the cloaked figure’s arm, struck where a shoulder should have been, and refused the world, passing through a body only half committed to it. The figure flickered around the shaft, resolving more sharply after the arrow was gone, silver eyes turning upon him with a cold, assessing interest.</p>
+<p>Brother Moss’s words bent toward a different god. Radiance broke like dawn in his palms and fell upon one of the guardians. Light burned away thread, and the thing came apart in a way that was not death so much as the end of a sentence.</p>
+<p>Kivra had the chicken in her hand before she knew why. It glared at her with vindictive wisdom. “Forgive me,” she told it, and hurled it at the cloaked figure like a curse.</p>
+<p>It hit. It should not have, but it did. The bird’s beak jabbed the air and found something deeper. The figure jerked, mouth tightening as if the peck had landed on the inside of her skull. The chicken dropped, outraged and triumphant, then streaked away round a pillar, clucking utter doom.</p>
+<p>Lyrian took a step forward, voice low. “Who are you?”</p>
+<p>“People’s names aren’t keys, Lyrian,” Kivra said under her breath, but the figure was already pushing back her hood.</p>
+<p>She was young. She had the kind of face a city remembers—fine, stubborn bones, and eyes the gray of metal when it catches starlight. A scar marked her cheek like a spool’s silhouette pressed into the skin and then healed badly.</p>
+<p>“I am <a href="../../entities/characters/veyra-vost.html" class="entity-link entity-character" data-entity-name="Veyra Vost" data-entity-type="characters" data-entity-preview="Veyra Vost is a young adult woman with a lean, controlled carriage and silver eyes that gleamed like polished wire. A thread‑spool–shaped scar marked...">Veyra Vost</a>,” she said.</p>
+<p>Lyrian swayed as if someone had cut the floor beneath him. The name struck something he had braced and braced against and never considered would be used. “Veyra…” He looked suddenly older, the wry certainty peeled away. “You’re dead.”</p>
+<p>“I was,” Veyra said. No flicker now. Too solid. “Until someone rewrote my thread.”</p>
+<p>The Loomspire trembled as if in agreement. Overhead, the unseen crack drove its wedge deeper, and somewhere far beyond the stone and the drift of the Convergence, Astor Falls heard a silence sharpen into pain.</p>
+<p>“And now,” Veyra said, and her voice was full of the Loom’s thousand warnings braided into one, “I will rewrite yours.”</p>
+<p>“Stop!” a man cried, and the word cracked like wood. A figure stumbled into the chamber’s light—an older man in scholar’s black, robe cuffs stained with dye and candle soot, hair that had once been careful now a thicket. He held his hands up, palms empty. “Please! She’s not herself!”</p>
+<p>Kivra did not lower her hands. Neither did Veyra. Neither, wisely, did Thalen. The remaining guardians angled their heads without faces.</p>
+<p>“Who are you?” Thalen asked, because names are sometimes keys even if Kivra pretends they aren’t.</p>
+<p>“<a href="../../entities/characters/master-helvran.html" class="entity-link entity-character" data-entity-name="Master Helvran" data-entity-type="characters" data-entity-preview="Master Helvran presented as a late‑middle‑aged, sparely built scholar whose posture carried the stoop of long study. Their ash-brown hair, streaked...">Master Helvran</a>,” the man said. He looked from Lyrian to Veyra as if he had to pry his gaze from each. “Senior scholar of the Weavers’ Guild. I’ve been trying to contain her. She’s been—altered, rewritten—corrupted—”</p>
+<p>“Not helping,” Kivra said through her teeth.</p>
+<p>“The Forge whispered your names,” Veyra told them. “Because you are the ones who break fate.” She said it as a fact, as a sentence passed. She turned that weight onto Kivra, and it felt like being measured for an unkind suit.</p>
+<p>“Thank you,” Kivra said. It came out brighter than she intended.</p>
+<p>“That was not a compliment,” Lyrian said, and in his voice was a grief he could not afford.</p>
+<p>Kivra glanced down for the chicken as if she could haul levity up by the scruff. Her hand closed on empty air. The bird had vanished, leaving a single feather spinning lazily down. It landed on her palm, and for an instant she felt a thread run through her from somewhere far above—tight, humming, ready to be plucked. She clenched her fist until the quiver left her bones.</p>
+<p>Outside, the city groaned as its seams were tugged. Inside, the Loomspire breathed like a creature that had forgotten how. Veyra’s silver eyes shone like knives testing paper.</p>
+<p>And in the second before everything moved, Kivra imagined she could hear it at last—the beginning of a scream.</p></div>
+        </div>
+        
+        </main>
+    </div>
+    <script>
+// Tapestry Static Site Core
+(function() {
+    'use strict';
+
+    // Mobile menu toggle
+    window.toggleMenu = function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            sidebar.classList.toggle('open');
+        }
+    };
+
+    // Entity preview tooltip
+    let tooltip = null;
+    let tooltipTimeout = null;
+    let hideTimeout = null;
+
+    function createTooltip() {
+        if (tooltip) return tooltip;
+        tooltip = document.createElement('div');
+        tooltip.className = 'entity-tooltip';
+        document.body.appendChild(tooltip);
+        return tooltip;
+    }
+
+    function showTooltip(link, e) {
+        const name = link.dataset.entityName;
+        const type = link.dataset.entityType;
+        const preview = link.dataset.entityPreview;
+        const image = link.dataset.entityImage;
+
+        if (!name) return;
+
+        clearTimeout(hideTimeout);
+
+        tooltipTimeout = setTimeout(() => {
+            const tt = createTooltip();
+
+            let html = '';
+            if (image) {
+                html += `<img src="${image}" alt="${name}" class="entity-tooltip-image" onerror="this.style.display='none'">`;
+            }
+            html += `<div class="entity-tooltip-name">${name}</div>`;
+            if (type) {
+                const typeLabel = type.replace(/s$/, '');
+                html += `<div class="entity-tooltip-type">${typeLabel}</div>`;
+            }
+            if (preview) {
+                html += `<div class="entity-tooltip-description">${preview}</div>`;
+            }
+
+            tt.innerHTML = html;
+
+            // Position tooltip
+            const rect = link.getBoundingClientRect();
+
+            let left = rect.left + (rect.width / 2) - 140;
+            let top = rect.top - 10;
+
+            // Adjust for viewport edges
+            if (left < 10) left = 10;
+            if (left + 280 > window.innerWidth - 10) {
+                left = window.innerWidth - 290;
+            }
+
+            // Position above or below link
+            tt.style.left = left + 'px';
+            if (top - tt.offsetHeight < 10) {
+                tt.style.top = (rect.bottom + 10) + 'px';
+            } else {
+                tt.style.top = (top - tt.offsetHeight) + 'px';
+            }
+
+            tt.classList.add('visible');
+        }, 300);
+    }
+
+    function hideTooltip() {
+        clearTimeout(tooltipTimeout);
+        hideTimeout = setTimeout(() => {
+            if (tooltip) {
+                tooltip.classList.remove('visible');
+            }
+        }, 100);
+    }
+
+    // Attach tooltip listeners to entity links
+    document.addEventListener('mouseover', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link && link.dataset.entityName) {
+            showTooltip(link, e);
+        }
+    });
+
+    document.addEventListener('mouseout', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link) {
+            hideTooltip();
+        }
+    });
+})();
+</script>
+</body>
+</html>

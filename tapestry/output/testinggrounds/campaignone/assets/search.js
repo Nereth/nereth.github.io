@@ -99,12 +99,4 @@
             timeout = setTimeout(later, wait);
         };
     }
-
-    // Mobile menu toggle
-    window.toggleMenu = function() {
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar) {
-            sidebar.classList.toggle('open');
-        }
-    };
 })();

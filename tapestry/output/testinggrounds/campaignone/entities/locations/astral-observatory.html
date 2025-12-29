@@ -191,10 +191,23 @@ body {
     display: block;
 }
 
+.card-no-link {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.card-no-link:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: var(--bg-card);
+    border-color: var(--border);
+}
+
 .card-image {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    object-position: top;
     border-radius: 0.375rem;
     margin-bottom: 1rem;
 }
@@ -272,16 +285,52 @@ body {
     border-bottom-style: solid;
 }
 
-.entity-link.entity-character::before {
-    content: "👤 ";
+/* Entity Preview Tooltip */
+.entity-tooltip {
+    position: fixed;
+    max-width: 280px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: 0 4px 16px var(--shadow);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
 }
 
-.entity-link.entity-location::before {
-    content: "📍 ";
+.entity-tooltip.visible {
+    opacity: 1;
 }
 
-.entity-link.entity-faction::before {
-    content: "⚔️ ";
+.entity-tooltip-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.entity-tooltip-type {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+}
+
+.entity-tooltip-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
 }
 
 /* Session Content */
@@ -513,28 +562,28 @@ body {
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <div class="site-container">
         <nav class="sidebar">
-            <a href="index.html" class="site-title">CampaignOne</a>
+            <a href="../../index.html" class="site-title">CampaignOne</a>
             
         <div class="nav-section">
             <div class="nav-section-title">Entities</div>
             <ul class="nav-list">
-                <li><a href="entities/characters/index.html">Characters</a></li>
-                <li><a href="entities/locations/index.html" class="active">Locations</a></li>
-                <li><a href="entities/factions/index.html">Factions</a></li>
+                <li><a href="../../entities/characters/index.html">Characters</a></li>
+                <li><a href="../../entities/locations/index.html" class="active">Locations</a></li>
+                <li><a href="../../entities/factions/index.html">Factions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Sessions</div>
             <ul class="nav-list">
-                <li><a href="sessions/index.html">All Sessions</a></li>
+                <li><a href="../../sessions/index.html">All Sessions</a></li>
             </ul>
         </div>
         
         <div class="nav-section">
             <div class="nav-section-title">Inventory</div>
             <ul class="nav-list">
-                <li><a href="inventory/index.html">Campaign Inventory</a></li>
+                <li><a href="../../inventory/index.html">Campaign Inventory</a></li>
             </ul>
         </div>
         
@@ -550,17 +599,137 @@ body {
             <div class="entity-content">
                 
         <section class="entity-section">
+            <h2 class="entity-section-title">Description</h2>
+            <p>The Astral Observatory in <a href="astor-falls.html" class="entity-link entity-location" data-entity-name="Astor Falls" data-entity-type="locations" data-entity-preview="Asterfall was a gleaming capital terraced around the rim of a starfall crater, its districts stitched together by airy skybridges and constellations..." data-entity-image="../../images/astor-falls.location.png">Asterfall</a> was a renowned dome of stone and brass, veined with runic inlays that glimmered faintly in starlight. Within, spiral galleries circled a great telescope and an array of calibrated lenses, mirrors, and armillary rings; shelves bowed under vellum charts and ink-dark ephemerides. Ozone, oil, and cold night air mingled with the soft rasp of turning gears and the distant hum of warding sigils.</p>
+<p>Its upper platform opened to the sky, where astral winds worried at cloaks and hair. There, a stabilization engine thrummed beneath grates of etched metal, and a suspended focusing crystal pulsed with a steady, heartbeat-like glow. When the Convergence faltered, hairline fractures laced the heavens above, reflecting in the crystal’s facets like cracks in glass.</p>
+        </section>
+        
+
+        <section class="entity-section">
+            <h2 class="entity-section-title">Significance</h2>
+            <p>The Observatory served as <a href="astor-falls.html" class="entity-link entity-location" data-entity-name="Astor Falls" data-entity-type="locations" data-entity-preview="Asterfall was a gleaming capital terraced around the rim of a starfall crater, its districts stitched together by airy skybridges and constellations..." data-entity-image="../../images/astor-falls.location.png">Asterfall</a>’s keystone for charting celestial patterns and diagnosing astral anomalies. <a href="../../entities/characters/thalen-reed.html" class="entity-link entity-character" data-entity-name="Thalen Reed" data-entity-type="characters" data-entity-preview="Thalen Reed is a lean, weathered human man in his late twenties, all stringed muscle and patient stillness. Dark hair is tied back to keep clear of a..." data-entity-image="../../images/thalen-reed.character.png">Thalen Reed</a> sought its records for guidance on shifting stars and rifts, and it became the party’s staging point to trace and isolate the interference that disrupted the Convergence.</p>
+        </section>
+        
+
+        <section class="entity-section">
+            <h2 class="entity-section-title">Events</h2>
+            <p>On the night the Convergence went awry, <a href="../../entities/characters/thalen-reed.html" class="entity-link entity-character" data-entity-name="Thalen Reed" data-entity-type="characters" data-entity-preview="Thalen Reed is a lean, weathered human man in his late twenties, all stringed muscle and patient stillness. Dark hair is tied back to keep clear of a..." data-entity-image="../../images/thalen-reed.character.png">Thalen Reed</a> arrived amid hurried scribes and sleepless astronomers, poring over centuries of charts to match new patterns against old certainties. As the skies drifted from their expected courses and rifts began to whisper at the city’s edges, the Observatory’s ledgers, ephemerides, and predictive tables provided the only coherent framework with which to interpret the change.</p>
+<p>Soon after, the party ascended to the upper platform. With the engine stabilized and the focusing crystal’s pulse returning to a measured rhythm, they assessed the apparatus and recorded a visible crack threading the firmament overhead. Astral winds pressed at them while they overlaid Lyrian’s constellation map across the sky and the crystal glow, triangulating the interference’s locus by matching misaligned stars to the device’s harmonic drift. The platform, alive with the engine’s hum, became their vantage to transform chaos into coordinates.</p>
+<p>From that night forward, the Observatory functioned as their operational anchor. Cross-referencing updated sky-charts with the engine’s readings, they plotted probable rift emergences and refined their pursuit of the disturbance behind the Convergence’s failure. Each return to the platform yielded clearer bearings and narrower margins, allowing the party to move from reaction to intent as the heavens slowly, uneasily, revealed their altered order.</p>
+        </section>
+        
+
+        <section class="entity-section">
             <h2 class="entity-section-title">Appearances</h2>
-            <p>Featured in sessions: 2</p>
+            <p>Featured in sessions: 0, 2</p>
         </section>
         
             </div>
             
-            <footer class="site-footer">
-                <p>Generated by <a href="https://github.com/joshuatheengineer/tapestry" target="_blank">Tapestry</a></p>
-            </footer>
         </main>
     </div>
-    
+    <script>
+// Tapestry Static Site Core
+(function() {
+    'use strict';
+
+    // Mobile menu toggle
+    window.toggleMenu = function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            sidebar.classList.toggle('open');
+        }
+    };
+
+    // Entity preview tooltip
+    let tooltip = null;
+    let tooltipTimeout = null;
+    let hideTimeout = null;
+
+    function createTooltip() {
+        if (tooltip) return tooltip;
+        tooltip = document.createElement('div');
+        tooltip.className = 'entity-tooltip';
+        document.body.appendChild(tooltip);
+        return tooltip;
+    }
+
+    function showTooltip(link, e) {
+        const name = link.dataset.entityName;
+        const type = link.dataset.entityType;
+        const preview = link.dataset.entityPreview;
+        const image = link.dataset.entityImage;
+
+        if (!name) return;
+
+        clearTimeout(hideTimeout);
+
+        tooltipTimeout = setTimeout(() => {
+            const tt = createTooltip();
+
+            let html = '';
+            if (image) {
+                html += `<img src="${image}" alt="${name}" class="entity-tooltip-image" onerror="this.style.display='none'">`;
+            }
+            html += `<div class="entity-tooltip-name">${name}</div>`;
+            if (type) {
+                const typeLabel = type.replace(/s$/, '');
+                html += `<div class="entity-tooltip-type">${typeLabel}</div>`;
+            }
+            if (preview) {
+                html += `<div class="entity-tooltip-description">${preview}</div>`;
+            }
+
+            tt.innerHTML = html;
+
+            // Position tooltip
+            const rect = link.getBoundingClientRect();
+
+            let left = rect.left + (rect.width / 2) - 140;
+            let top = rect.top - 10;
+
+            // Adjust for viewport edges
+            if (left < 10) left = 10;
+            if (left + 280 > window.innerWidth - 10) {
+                left = window.innerWidth - 290;
+            }
+
+            // Position above or below link
+            tt.style.left = left + 'px';
+            if (top - tt.offsetHeight < 10) {
+                tt.style.top = (rect.bottom + 10) + 'px';
+            } else {
+                tt.style.top = (top - tt.offsetHeight) + 'px';
+            }
+
+            tt.classList.add('visible');
+        }, 300);
+    }
+
+    function hideTooltip() {
+        clearTimeout(tooltipTimeout);
+        hideTimeout = setTimeout(() => {
+            if (tooltip) {
+                tooltip.classList.remove('visible');
+            }
+        }, 100);
+    }
+
+    // Attach tooltip listeners to entity links
+    document.addEventListener('mouseover', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link && link.dataset.entityName) {
+            showTooltip(link, e);
+        }
+    });
+
+    document.addEventListener('mouseout', function(e) {
+        const link = e.target.closest('.entity-link');
+        if (link) {
+            hideTooltip();
+        }
+    });
+})();
+</script>
 </body>
 </html>
