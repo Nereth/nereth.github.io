@@ -1,0 +1,22 @@
+title: Nereth
+description: Personal portfolio and blog
+author:
+  name: Nereth
+  email: your.email@example.com
+
+# Theme
+theme: minima
+
+# Social links (displayed in footer)
+minima:
+  social_links:
+    - { platform: github, user_url: "https://github.com/Nereth" }
+
+# Build settings
+markdown: kramdown
+permalink: /:title/
+
+# Pages to show in header navigation
+header_pages:
+  - about.md
+  - projects.md
