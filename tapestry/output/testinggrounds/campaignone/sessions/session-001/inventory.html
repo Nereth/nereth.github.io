@@ -401,17 +401,18 @@ body {
 
 /* Search */
 .search-container {
+    position: relative;
     margin-bottom: 1.5rem;
 }
 
 .search-input {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
     background-color: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 0.375rem;
     color: var(--text-primary);
-    font-size: 1rem;
+    font-size: 0.875rem;
 }
 
 .search-input:focus {
@@ -425,26 +426,63 @@ body {
 }
 
 .search-results {
-    margin-top: 1rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    margin-top: 0.25rem;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px var(--shadow);
 }
 
 .search-result-item {
-    padding: 1rem;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 0.375rem;
-    margin-bottom: 0.5rem;
+    display: block;
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.15s ease;
 }
 
-.search-result-title {
-    font-weight: 600;
-    color: var(--text-primary);
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: var(--bg-card-hover);
 }
 
 .search-result-type {
-    font-size: 0.75rem;
+    font-size: 0.625rem;
     color: var(--text-muted);
     text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.125rem;
+}
+
+.search-result-title {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.search-result-title mark {
+    background-color: var(--accent);
+    color: white;
+    padding: 0 0.125rem;
+    border-radius: 0.125rem;
+}
+
+.search-no-results {
+    padding: 0.75rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    text-align: center;
 }
 
 /* Footer */
@@ -564,6 +602,14 @@ body {
         <nav class="sidebar">
             <a href="../../index.html" class="site-title">CampaignOne</a>
             
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input"
+                   placeholder="Search..." autocomplete="off"
+                   data-base-path="../../">
+            <div id="search-results" class="search-results"></div>
+        </div>
+        
+            
         <div class="nav-section">
             <div class="nav-section-title">Entities</div>
             <ul class="nav-list">
@@ -604,7 +650,7 @@ body {
         
         </main>
     </div>
-    <script>
+    <script>var TAPESTRY_SEARCH_INDEX = [{"title": "Lyrien Vaust", "type": "Character", "url": "entities/characters/lyrien-vaust.html", "content": "Lyrien Vaust carried the composed gravity of a lifelong scholar-commander. In late middle age with silver-shot dark hair swept back from a thoughtful brow, she stood slender and straight-backed, her p"}, {"title": "Bronn Thale", "type": "Character", "url": "entities/characters/bronn-thale.html", "content": "Bronn Thale presents as a battle-weathered man in his late thirties to early forties, broad-shouldered and squared by years of drill. His skin is sun-browned and wind-chapped, a pale scar tracking fro"}, {"title": "Eris Vanthe", "type": "Character", "url": "entities/characters/eris-vanthe.html", "content": "Eris Vanthe was a woman in her mid-thirties with a lean, wiry build tempered by the strength of someone used to heat and weight. Soot smudged the pale angles of her face, and her close-cropped dark ha"}, {"title": "Varkessa Holt", "type": "Character", "url": "entities/characters/varkessa-holt.html", "content": "Varkessa Holt stands tall and broad-shouldered, a soldier\u2019s strength pared to efficiency. In their late thirties, they carry the weathered look of a veteran: iron-gray hair kept short at the sides, ke"}, {"title": "Thalen Reed", "type": "Character", "url": "entities/characters/thalen-reed.html", "content": "Thalen Reed is a lean, weathered human man in his late twenties, all stringed muscle and patient stillness. Dark hair is tied back to keep clear of a star-etched longbow that rarely leaves his shoulde"}, {"title": "Kivra Embercoil", "type": "Character", "url": "entities/characters/kivra-embercoil.html", "content": "Kivra Embercoil is a young fire genasi woman with a wiry, quick-moving build and ember-orange hair that flickers like banked coals. Constellations of glowing freckles scatter across her cheeks and col"}, {"title": "Brother Moss", "type": "Character", "url": "entities/characters/brother-moss.html", "content": "Brother Moss is a tall firbolg male with moss\u2011green fur and gentle, observant eyes. Their broad, soft build carries the quiet strength of old forests, and they move with an unhurried, grounded grace. "}, {"title": "Solaryn", "type": "Character", "url": "entities/characters/solaryn.html", "content": "Solaryn presents as an ageless, male figure whose presence bends easily past mortal measures. Tall and lean with a sun-sculpted build, they carry the quiet warmth of first light. Skin holds a soft aur"}, {"title": "Nymera", "type": "Character", "url": "entities/characters/nymera.html", "content": "Nymera presented as a woman of ageless, celestial poise, yet preferred they/them forms of address. Their build was tall and slender, movements unhurried, as if time bent politely around them. Starligh"}, {"title": "Korrun", "type": "Character", "url": "entities/characters/korrun.html", "content": "Korrun, known as the Iron Father, is most often depicted in iconography and manifested visions as an ageless, broad-shouldered figure with the weight and stillness of an anvil. They bear a masculine c"}, {"title": "The Nameless One", "type": "Character", "url": "entities/characters/the-nameless-one.html", "content": "The Nameless One appears as an ageless, androgynous figure whose features never quite settle, as if memory itself struggles to hold them in focus. Their build seems to shift with the light\u2014slender in "}, {"title": "Lyrian Vost", "type": "Character", "url": "entities/characters/lyrian-vost.html", "content": "Lyrian Vost is a woman in her middle years with a tall, spare build and a habit of holding herself ramrod-straight, as if bracing against an unseen current. She wears deep blue robes that take light l"}, {"title": "Gorin", "type": "Character", "url": "entities/characters/gorin.html", "content": "Gorin is widely described as a meticulous, middle\u2011aged figure with a compact, steady build and the self\u2011possessed poise of someone accustomed to locked rooms and ledgers. They favor understated, well\u2011"}, {"title": "Veyra Vost", "type": "Character", "url": "entities/characters/veyra-vost.html", "content": "Veyra Vost is a young adult woman with a lean, controlled carriage and silver eyes that gleamed like polished wire. A thread\u2011spool\u2013shaped scar marked her skin, an emblem as much as a wound, and her pr"}, {"title": "Master Helvran", "type": "Character", "url": "entities/characters/master-helvran.html", "content": "Master Helvran presented as a late\u2011middle\u2011aged, sparely built scholar whose posture carried the stoop of long study. Their ash-brown hair, streaked with silver, was pulled back neatly, and brass-rimme"}, {"title": "Veyrun", "type": "Location", "url": "entities/locations/veyrun.html", "content": "Veyrun was a world held in tense equilibrium: soot-dusted foundries and lantern-lit rail spurs pressed against wind-scoured cairns and rune-bitten menhirs. The land smelled of oil and ozone, hammered "}, {"title": "Ironwell", "type": "Location", "url": "entities/locations/ironwell.html", "content": "Ironwell is a fortified industrial city carved straight into the ribs of a canyon, its tiers hewn from dark stone and banded in riveted iron. Switchback avenues cling to the cliff face, while buttress"}, {"title": "Mirehollow", "type": "Location", "url": "entities/locations/mirehollow.html", "content": "Mirehollow is a mist-shrouded port city clinging to ancient seawalls and barnacled pilings, its skyline a ragged thicket of stilted warehouses, rope bridges, and slate-roofed tenements. Chill fog coil"}, {"title": "Astral Observatory", "type": "Location", "url": "entities/locations/astral-observatory.html", "content": "The Astral Observatory in Asterfall was a renowned dome of stone and brass, veined with runic inlays that glimmered faintly in starlight. Within, spiral galleries circled a great telescope and an arra"}, {"title": "The Astral Forge", "type": "Location", "url": "entities/locations/the-astral-forge.html", "content": "The Astral Forge is a looming arcane facility whose heart is a thunderous engine chamber, its brasswork conduits and suspended rings shedding a cold, star-lit glow. The air hums with restrained power "}, {"title": "Astor Falls Upper District", "type": "Location", "url": "entities/locations/astor-falls-upper-district.html", "content": "The Upper District of Astor Falls sat on high stone terraces, its broad plazas tied together by cut-stone steps and waist-high railings that looked over the lower quarters. On the night of the Starfal"}, {"title": "Loomspire District", "type": "Location", "url": "entities/locations/loomspire-district.html", "content": "The Loomspire District clustered around a needlelike tower that gave it its name, a thicket of narrow brick mills and timbered workshops stitched together by pulley-lines, skywalks, and drying skeins "}, {"title": "The Loomspire", "type": "Location", "url": "entities/locations/the-loomspire.html", "content": "The Loomspire was a soaring tower of interwoven stone arches laced together by shimmering thread-bridges that spanned the voids between buttresses like spun light. The air around it hummed with a low,"}, {"title": "Astor Falls", "type": "Location", "url": "entities/locations/astor-falls.html", "content": "Asterfall was a gleaming capital terraced around the rim of a starfall crater, its districts stitched together by airy skybridges and constellations of slow-drifting lanterns. Whitestone arcs and glas"}, {"title": "Asterian Concord", "type": "Faction", "url": "entities/factions/asterian-concord.html", "content": "The Asterian Concord is a ruling council seated in Asterfall, where archmages and highborn peers share power in a carefully negotiated balance. Formed to keep the city\u2019s arcane might and noble wealth "}, {"title": "Tide Court", "type": "Faction", "url": "entities/factions/tide-court.html", "content": "The Tide Court\u2014also known simply as the Tide Court\u2014is a rotating council of guildmasters that loosely governs Mirehollow from the stilted Tidemoot Hall above the brackish docks. Seats pass with the tu"}, {"title": "The Weavers' Guild", "type": "Faction", "url": "entities/factions/the-weavers-guild.html", "content": "The Weavers\u2019 Guild, also known simply as the Weavers' Guild, is the custodial order that tends the city\u2019s fate-threads and maintains the stabilizing wards of the Loomspire District. Their domain is th"}, {"title": "Session 001", "type": "Session", "url": "sessions/session-001/summary.html", "content": "During the Starfall Convergence in Astor Falls\u2019 Upper District, Thalen studied star charts while Kivra juggled fried dough and drinks and Brother Moss listened to uneasy water. Lyrian Vost recruited t"}, {"title": "Session 002", "type": "Session", "url": "sessions/session-002/summary.html", "content": "On the Observatory\u2019s peak, the party steadied the astral engine as a hairline crack split the sky over Astor Falls. Lyrian Vost traced the accelerating chaos to the Weavers\u2019 Guild in the Loomspire Dis"}];
 // Tapestry Static Site Core
 (function() {
     'use strict';
@@ -705,6 +751,113 @@ body {
             hideTooltip();
         }
     });
+})();
+
+// Tapestry Static Site Search
+(function() {
+    'use strict';
+
+    let searchIndex = [];
+    let searchInput = null;
+    let resultsContainer = null;
+    let indexBasePath = '';
+
+    // Initialize search when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        searchInput = document.getElementById('search-input');
+        resultsContainer = document.getElementById('search-results');
+
+        if (!searchInput || !resultsContainer) return;
+
+        // Get the base path from the data attribute (handles different page depths)
+        indexBasePath = searchInput.dataset.basePath || '';
+
+        // Use embedded index if available (works with file:// and http://)
+        // Falls back to fetch for remote hosting without embedded index
+        if (typeof TAPESTRY_SEARCH_INDEX !== 'undefined') {
+            searchIndex = TAPESTRY_SEARCH_INDEX;
+        } else {
+            // Fallback: try to fetch (only works with http://, not file://)
+            const indexPath = indexBasePath + 'assets/search-index.json';
+            fetch(indexPath)
+                .then(response => response.json())
+                .then(data => { searchIndex = data; })
+                .catch(() => { console.log('Search index not available'); });
+        }
+
+        // Add event listeners
+        searchInput.addEventListener('input', debounce(performSearch, 200));
+        searchInput.addEventListener('keydown', handleKeyDown);
+    });
+
+    function performSearch() {
+        const query = searchInput.value.toLowerCase().trim();
+
+        if (query.length < 2) {
+            resultsContainer.innerHTML = '';
+            resultsContainer.style.display = 'none';
+            return;
+        }
+
+        const results = searchIndex.filter(item => {
+            return item.title.toLowerCase().includes(query) ||
+                   (item.content && item.content.toLowerCase().includes(query));
+        }).slice(0, 10);
+
+        displayResults(results, query);
+    }
+
+    function displayResults(results, query) {
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<div class="search-no-results">No results found</div>';
+            resultsContainer.style.display = 'block';
+            return;
+        }
+
+        const html = results.map(item => {
+            const highlight = highlightMatch(item.title, query);
+            // Prepend base path for correct relative URLs from any page depth
+            const url = indexBasePath + item.url;
+            return `
+                <a href="${url}" class="search-result-item">
+                    <div class="search-result-type">${item.type}</div>
+                    <div class="search-result-title">${highlight}</div>
+                </a>
+            `;
+        }).join('');
+
+        resultsContainer.innerHTML = html;
+        resultsContainer.style.display = 'block';
+    }
+
+    function highlightMatch(text, query) {
+        const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+    }
+
+    function escapeRegex(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function handleKeyDown(e) {
+        if (e.key === 'Escape') {
+            searchInput.value = '';
+            resultsContainer.innerHTML = '';
+            resultsContainer.style.display = 'none';
+        }
+    }
+
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
 })();
 </script>
 </body>

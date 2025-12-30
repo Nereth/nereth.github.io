@@ -6,6 +6,7 @@
     let searchIndex = [];
     let searchInput = null;
     let resultsContainer = null;
+    let indexBasePath = '';
 
     // Initialize search when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
@@ -14,24 +15,26 @@
 
         if (!searchInput || !resultsContainer) return;
 
-        // Load search index
-        loadSearchIndex();
+        // Get the base path from the data attribute (handles different page depths)
+        indexBasePath = searchInput.dataset.basePath || '';
+
+        // Use embedded index if available (works with file:// and http://)
+        // Falls back to fetch for remote hosting without embedded index
+        if (typeof TAPESTRY_SEARCH_INDEX !== 'undefined') {
+            searchIndex = TAPESTRY_SEARCH_INDEX;
+        } else {
+            // Fallback: try to fetch (only works with http://, not file://)
+            const indexPath = indexBasePath + 'assets/search-index.json';
+            fetch(indexPath)
+                .then(response => response.json())
+                .then(data => { searchIndex = data; })
+                .catch(() => { console.log('Search index not available'); });
+        }
 
         // Add event listeners
         searchInput.addEventListener('input', debounce(performSearch, 200));
         searchInput.addEventListener('keydown', handleKeyDown);
     });
-
-    function loadSearchIndex() {
-        fetch('assets/search-index.json')
-            .then(response => response.json())
-            .then(data => {
-                searchIndex = data;
-            })
-            .catch(error => {
-                console.log('Search index not available');
-            });
-    }
 
     function performSearch() {
         const query = searchInput.value.toLowerCase().trim();
@@ -59,8 +62,10 @@
 
         const html = results.map(item => {
             const highlight = highlightMatch(item.title, query);
+            // Prepend base path for correct relative URLs from any page depth
+            const url = indexBasePath + item.url;
             return `
-                <a href="${item.url}" class="search-result-item">
+                <a href="${url}" class="search-result-item">
                     <div class="search-result-type">${item.type}</div>
                     <div class="search-result-title">${highlight}</div>
                 </a>
